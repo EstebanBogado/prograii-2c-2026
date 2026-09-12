@@ -3,9 +3,11 @@ package ar.edu.unlam.pbii.localDeComidasTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 import ar.edu.unlam.pbii.localDeComidas.Cliente;
+import ar.edu.unlam.pbii.localDeComidas.Guarnicion;
 import ar.edu.unlam.pbii.localDeComidas.Local;
 import ar.edu.unlam.pbii.localDeComidas.Menu;
 import ar.edu.unlam.pbii.localDeComidas.Plato;
+import ar.edu.unlam.pbii.localDeComidas.Sanguche;
 
 class Test {
 
@@ -24,34 +26,34 @@ class Test {
 
 		assertNotNull(cliente1);
 		assertEquals("Standard", cliente1.getCatCli());
-
 	}
 
 	@org.junit.jupiter.api.Test
 	void crearUnLocalYArmarleUnMenu() {
 		Local central = new Local("Casa Central");
 		Menu menuCasaCentral = new Menu("Menu Casa Central");
-		Plato hamburguesaClasica = new Plato("Burga Clásica", "Lechuga tomate", "", 10.0);
-		Plato hamburguesaEspecial = new Plato("Super Burga", "Doble bacon", "Papas Fritas", 15.0);
-		Plato sangucheMilanesaBasico = new Plato("Mila Básica", "Milanesa", "", 8.0);
+		Plato hamburguesaClasica = new Plato("Burga Clásica", Sanguche.CLASICA, Guarnicion.PAPAS_FRITAS, 10.0);
+		Plato hamburguesaEspecial = new Plato("Super Burga", Sanguche.BACON, Guarnicion.PAPAS_FRITAS, 15.0);
+		Plato sangucheMilanesaBasico = new Plato("Mila Básica", Sanguche.MILA_SIMPLE,
+				Guarnicion.ENSALADA_LECHUGA_TOMATE, 8.0);
 
 		menuCasaCentral.setPlato(sangucheMilanesaBasico);
 		menuCasaCentral.setPlato(hamburguesaEspecial);
-//		menuCasaCentral.setPlato(hamburguesaClasica);
+		menuCasaCentral.setPlato(hamburguesaClasica);
 
 		central.setMenu(menuCasaCentral);
 
-		assertEquals(Integer.valueOf(2), central.getMenu());
-
+		assertEquals(Integer.valueOf(3), central.getMenu());
 	}
 
 	@org.junit.jupiter.api.Test
 	void crearUnLocalYArmarleUnMenuYQueSePUedaAumentarElTamanio() {
 		Local central = new Local("Casa Central");
 		Menu menuCasaCentral = new Menu("Menu Casa Central");
-		Plato hamburguesaClasica = new Plato("Burga Clásica", "Lechuga tomate", "", 10.0);
-		Plato hamburguesaEspecial = new Plato("Super Burga", "Doble bacon", "Papas Fritas", 15.0);
-		Plato sangucheMilanesaBasico = new Plato("Mila Básica", "Milanesa", "", 8.0);
+		Plato hamburguesaClasica = new Plato("Burga Clásica", Sanguche.CLASICA, Guarnicion.PAPAS_FRITAS, 10.0);
+		Plato hamburguesaEspecial = new Plato("Super Burga", Sanguche.BACON, Guarnicion.PAPAS_FRITAS, 15.0);
+		Plato sangucheMilanesaBasico = new Plato("Mila Básica", Sanguche.MILA_SIMPLE,
+				Guarnicion.ENSALADA_LECHUGA_TOMATE, 8.0);
 
 		menuCasaCentral.setPlato(sangucheMilanesaBasico);
 		menuCasaCentral.setPlato(hamburguesaEspecial);
@@ -64,30 +66,46 @@ class Test {
 		central.listarMenu();
 
 		assertEquals(Integer.valueOf(3), central.getMenu());
-
 	}
 
 	@org.junit.jupiter.api.Test
 	void crearUnLocalYArmarleUnMenuYQueSePUedaEliminarUnPlato() {
 		Local central = new Local("Casa Central");
 		Menu menuCasaCentral = new Menu("Menu Casa Central");
-		Plato hamburguesaClasica = new Plato("Burga Clásica", "Lechuga tomate", "", 10.0);
-		Plato hamburguesaEspecial = new Plato("Super Burga", "Doble bacon", "Papas Fritas", 15.0);
-		Plato sangucheMilanesaBasico = new Plato("Mila Básica", "Milanesa", "", 8.0);
-		Plato sangucheMilanesaCompleto = new Plato("Mila Campleta", "Milanesa lechuga tomate", "Papas Fritas", 12.0);
+		Plato hamburguesaClasica = new Plato("Burga Clásica", Sanguche.CLASICA, Guarnicion.PAPAS_FRITAS, 10.0);
+		Plato hamburguesaEspecial = new Plato("Super Burga", Sanguche.BACON, Guarnicion.PAPAS_FRITAS, 15.0);
+		Plato sangucheMilanesaBasico = new Plato("Mila Básica", Sanguche.MILA_SIMPLE,
+				Guarnicion.ENSALADA_LECHUGA_TOMATE, 8.0);
+		Plato sangucheMilanesaCompleto = new Plato("Mila Campleta", Sanguche.MILA_COMPLETO,
+				Guarnicion.ENSALADA_ZANAHORIA_HUEVO, 12.0);
 
 		menuCasaCentral.setPlato(sangucheMilanesaBasico);
 		menuCasaCentral.setPlato(hamburguesaEspecial);
 		menuCasaCentral.setPlato(hamburguesaClasica);
 		central.setMenu(menuCasaCentral);
 		assertEquals(Integer.valueOf(3), central.getMenu());
-		central.listarMenu();
 
 		menuCasaCentral.eliminarPlato(hamburguesaClasica);
 		central.setMenu(menuCasaCentral);
 		menuCasaCentral.setPlato(sangucheMilanesaCompleto);
 		assertEquals(Integer.valueOf(3), central.getMenu());
-		central.listarMenu();
+	}
+	
+	@org.junit.jupiter.api.Test
+	void crearUnLocalYArmarleUnMenuYCalcularLaVentaTotal() {
+		Local central = new Local("Casa Central");
+		Menu menuCasaCentral = new Menu("Menu Casa Central");
+		Plato hamburguesaClasica = new Plato("Burga Clásica", Sanguche.CLASICA, Guarnicion.PAPAS_FRITAS, 10.0);
+		Plato hamburguesaEspecial = new Plato("Super Burga", Sanguche.BACON, Guarnicion.PAPAS_FRITAS, 15.0);
+		Plato sangucheMilanesaBasico = new Plato("Mila Básica", Sanguche.MILA_SIMPLE,
+				Guarnicion.ENSALADA_LECHUGA_TOMATE, 8.0);
+		Plato sangucheMilanesaCompleto = new Plato("Mila Campleta", Sanguche.MILA_COMPLETO,
+				Guarnicion.ENSALADA_ZANAHORIA_HUEVO, 12.0);
 
+		menuCasaCentral.setPlato(sangucheMilanesaBasico);
+		menuCasaCentral.setPlato(hamburguesaEspecial);
+		menuCasaCentral.setPlato(hamburguesaClasica);
+		menuCasaCentral.setPlato(sangucheMilanesaCompleto);
+		central.facturaciónDiarita();
 	}
 }

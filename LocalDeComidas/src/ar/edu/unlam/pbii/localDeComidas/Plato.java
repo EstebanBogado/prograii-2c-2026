@@ -2,13 +2,13 @@ package ar.edu.unlam.pbii.localDeComidas;
 
 public class Plato {
 	private String nombre;
-	private String ingred;
-	private String guarnicion;
+	private Sanguche principal;
+	private Guarnicion guarnicion;
 	private Double precio;
 
-	public Plato(String nombre, String ingred, String guarnicion, Double precio) {
+	public Plato(String nombre, Sanguche principal, Guarnicion guarnicion, Double precio) {
 		this.nombre = nombre;
-		this.ingred = ingred;
+		this.principal = principal;
 		this.guarnicion = guarnicion;
 		this.precio = precio;
 	}
@@ -21,25 +21,25 @@ public class Plato {
 	 * public void setNombre(String nombre) { this.nombre = nombre; }
 	 */
 
-	public String getIngred() {
-		return ingred;
+	public Sanguche getIngred() {
+		return principal;
 	}
 
 	@Override
 	public String toString() {
-		return "nombre= " + nombre + ", ingredientes= " + ingred + ", guarnicion= " + guarnicion + ", precio= " + precio
-				+ "\n";
+		return "nombre= " + nombre + ", ingredientes= " + principal + ", guarnicion= " + guarnicion + ", precio= "
+				+ precio + "\n";
 	}
 
-	public void setIngred(String ingred) {
-		this.ingred = ingred;
+	public void setIngred(Sanguche sanguche) {
+		this.principal = sanguche;
 	}
 
-	public String getGuarnicion() {
+	public Guarnicion getGuarnicion() {
 		return guarnicion;
 	}
 
-	public void setGuarnicion(String guarnicion) {
+	public void setGuarnicion(Guarnicion guarnicion) {
 		this.guarnicion = guarnicion;
 	}
 
