@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 import ar.edu.unlam.pbii.casaDeComidas.Bebida;
+import ar.edu.unlam.pbii.casaDeComidas.Carne;
+import ar.edu.unlam.pbii.casaDeComidas.Guarnicion;
 import ar.edu.unlam.pbii.casaDeComidas.Local;
 import ar.edu.unlam.pbii.casaDeComidas.Menu;
 import ar.edu.unlam.pbii.casaDeComidas.Mesa;
@@ -84,6 +86,32 @@ class Test {
 
 		assertEquals(Integer.valueOf(2), mesa1.getCantidad());
 		assertEquals(Integer.valueOf(1), central.getMesasAbiertas());
+	}
 
+	@org.junit.jupiter.api.Test
+	void crearUnaMesaAbrirlaYCargarleDosPlatosYEliminarUno() {
+		Menu menuCasaCentral = new Menu("Menú General");
+		Plato plato1 = new Plato();
+		Plato plato2 = new Plato();
+		Mesa mesa1 = new Mesa(1);
+		Mesa mesa2 = new Mesa(2);
+		central.abrirMesa(mesa1);
+		central.abrirMesa(mesa2);
+
+		plato1.agregarCarne(Carne.BIFE_CHORIZO);
+		plato1.agregarGuarnicion(Guarnicion.PAPAS_FRITAS);
+		plato1.agregarBebida(Bebida.COCA_COLA);
+		plato2.agregarCarne(Carne.PECHUGA_GRILLE);
+		plato2.agregarGuarnicion(Guarnicion.ENSALADA_MIXTA);
+		plato2.agregarBebida(Bebida.SPRITE);
+		menuCasaCentral.agregarPlato(plato1);
+		menuCasaCentral.agregarPlato(plato2);
+		mesa1.agregarConsumo(plato2);
+		mesa1.agregarConsumo(plato1);
+//		mesa1.eliminarConsumo(plato1);
+		System.out.println(mesa1.toString());
+//		System.out.println(central.toString());
+		assertEquals(Integer.valueOf(2), mesa1.getCantidad());
+		assertEquals(Integer.valueOf(2), central.getMesasAbiertas());
 	}
 }

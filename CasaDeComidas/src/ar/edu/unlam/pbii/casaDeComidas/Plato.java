@@ -1,8 +1,5 @@
 package ar.edu.unlam.pbii.casaDeComidas;
 
-import ar.edu.unlam.pbii.casaDeComidasTest.Carne;
-import ar.edu.unlam.pbii.casaDeComidasTest.Guarnicion;
-
 public class Plato {
 	private Carne carne;
 	private Guarnicion guarnicion;
@@ -34,6 +31,29 @@ public class Plato {
 
 	public Bebida getBebida() {
 		return this.bebida;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder plato = new StringBuilder("Plato [");
+		boolean primero = true;
+
+		if (carne != null) {
+			plato.append("carne=").append(carne);
+			primero = false;
+		}
+		if (guarnicion != null) {
+			if (!primero) plato.append(", ");
+			plato.append("guarnicion=").append(guarnicion);
+			primero = false;
+		}
+		if (bebida != null) {
+			if (!primero) plato.append(", ");
+			plato.append("bebida=").append(bebida);
+		}
+
+		plato.append("]\n");
+		return plato.toString();
 	}
 
 }

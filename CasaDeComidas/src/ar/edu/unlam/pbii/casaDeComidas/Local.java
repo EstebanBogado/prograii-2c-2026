@@ -1,5 +1,7 @@
 package ar.edu.unlam.pbii.casaDeComidas;
 
+import java.util.Arrays;
+
 public class Local {
 	private Mesa[] mesasLocal = new Mesa[5];
 	private String nombreSucursal;
@@ -15,13 +17,13 @@ public class Local {
 		if (mesasLocal[mesa.getNumeroMesa() - 1] == null) {
 			mesasLocal[mesa.getNumeroMesa() - 1] = mesa;
 			mesa.abrirMesa();
-			this.cantidad ++;
+			this.cantidad++;
 			return true;
 		}
 
 		return false;
 	}
-	
+
 	public Integer getMesasAbiertas() {
 		return this.cantidad;
 	}
@@ -29,4 +31,12 @@ public class Local {
 	public String getNombreSucursal() {
 		return this.nombreSucursal;
 	}
+
+	@Override
+	public String toString() {
+		return "Local [mesasLocal= " + Arrays.toString(mesasLocal) + ", nombreSucursal= " + nombreSucursal
+				+ ", cantidad= " + cantidad + "]\n";
+		
+	}
+
 }
