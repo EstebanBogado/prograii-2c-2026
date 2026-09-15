@@ -51,7 +51,6 @@ public class Plato {
 			if (!primero) plato.append(", ");
 			plato.append("bebida=").append(bebida);
 		}
-
 		plato.append("]\n");
 		return plato.toString();
 	}
