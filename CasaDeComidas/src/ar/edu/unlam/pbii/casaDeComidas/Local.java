@@ -23,6 +23,14 @@ public class Local {
 
 		return false;
 	}
+	
+	public Integer cantPlatosVendidos() {
+		Integer cantidad = 0;
+		for(int i = 0; i < this.cantidad; i ++) {
+			cantidad += mesasLocal[i].getCantidad();
+		}
+		return cantidad;
+	}
 
 	public Integer getMesasAbiertas() {
 		return this.cantidad;
@@ -30,6 +38,14 @@ public class Local {
 
 	public String getNombreSucursal() {
 		return this.nombreSucursal;
+	}
+	
+	public Double facturacionLocal() {
+		Double facturacion = 0.0;
+		 for(int i = 0; i < this.cantidad; i ++) {
+			facturacion += mesasLocal[i].getGastoMesa();
+		}
+		 return facturacion;
 	}
 
 	@Override

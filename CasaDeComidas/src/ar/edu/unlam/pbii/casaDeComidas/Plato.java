@@ -1,58 +1,22 @@
 package ar.edu.unlam.pbii.casaDeComidas;
 
-public class Plato {
-	private Carne carne;
-	private Guarnicion guarnicion;
-	private Bebida bebida;
+public class Plato extends Producto {
 
 	public Plato() {
+		super();
 
-	}
-
-	public void agregarCarne(Carne carne) {
-		this.carne = carne;
-	}
-
-	public void agregarGuarnicion(Guarnicion guarnicion) {
-		this.guarnicion = guarnicion;
-	}
-
-	public void agregarBebida(Bebida bebida) {
-		this.bebida = bebida;
-	}
-
-	public Carne getCarne() {
-		return this.carne;
-	}
-
-	public Guarnicion getGuarnicion() {
-		return this.guarnicion;
-	}
-
-	public Bebida getBebida() {
-		return this.bebida;
 	}
 
 	@Override
-	public String toString() {
-		StringBuilder plato = new StringBuilder("Plato [");
-		boolean primero = true;
+	public Double aplicarDescuento() {
+		// TODO Esbozo de método generado automáticamente
+		return null;
+	}
 
-		if (carne != null) {
-			plato.append("carne=").append(carne);
-			primero = false;
-		}
-		if (guarnicion != null) {
-			if (!primero) plato.append(", ");
-			plato.append("guarnicion=").append(guarnicion);
-			primero = false;
-		}
-		if (bebida != null) {
-			if (!primero) plato.append(", ");
-			plato.append("bebida=").append(bebida);
-		}
-		plato.append("]\n");
-		return plato.toString();
+	@Override
+	public Double calcularPrecio() {
+
+		return (this.carne.getPrecio() + this.guarnicion.getPrecio() + this.bebida.getPrecio());
 	}
 
 }

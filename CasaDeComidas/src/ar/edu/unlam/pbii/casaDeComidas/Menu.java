@@ -3,7 +3,7 @@ package ar.edu.unlam.pbii.casaDeComidas;
 import java.util.Arrays;
 
 public class Menu {
-	private Plato[] platos = new Plato[2];
+	private Producto[] platos = new Producto[2];
 	private String nombreMenu;
 	private Integer cantidad = 0;
 
@@ -15,7 +15,7 @@ public class Menu {
 		return this.nombreMenu;
 	}
 
-	public void agregarPlato(Plato plato) {
+	public void agregarPlato(Producto plato) {
 		for (int i = 0; i < this.platos.length; i++) {
 			if (this.platos[i] == null) {
 				this.platos[i] = plato;

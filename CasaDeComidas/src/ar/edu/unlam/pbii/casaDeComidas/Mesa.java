@@ -4,12 +4,15 @@ import java.util.Arrays;
 
 public class Mesa {
 	private Integer cantidad = 0;
-	private Plato[] consumo = new Plato[3];
+	private Producto[] consumo = new Producto[3];
 	private Integer numeroMesa;
 	private Boolean mesaAbierta = false;
+	private Double gastoMesa = 0.0;
 
 	public Mesa(Integer numeroMesa) {
 		this.numeroMesa = numeroMesa;
+		for (int i = 0; i < consumo.length; i++)
+			consumo[i] = null;
 	}
 
 	public void abrirMesa() {
@@ -20,7 +23,7 @@ public class Mesa {
 		return this.mesaAbierta;
 	}
 
-	public void agregarConsumo(Plato consumo) {
+	public void agregarConsumo(Producto plato) {
 		if (!this.mesaAbierta)
 			return;
 		if (cantidad == this.consumo.length) {
@@ -28,7 +31,7 @@ public class Mesa {
 		}
 		for (int i = 0; i < this.consumo.length; i++) {
 			if (this.consumo[i] == null) {
-				this.consumo[i] = consumo;
+				this.consumo[i] = plato;
 				cantidad++;
 				return;
 			}
@@ -47,7 +50,7 @@ public class Mesa {
 	public String toString() {
 //		return "Mesa [cantidad=" + cantidad + ", consumo=" + Arrays.toString(consumo) + ", numeroMesa=" + numeroMesa
 //				+ ", mesaAbierta=" + mesaAbierta + "]";
-		
+
 		StringBuilder string = new StringBuilder("mesa [");
 		boolean primero = true;
 
@@ -56,12 +59,14 @@ public class Mesa {
 			primero = false;
 		}
 		if (consumo != null) {
-			if (!primero) string.append(", ");
+			if (!primero)
+				string.append(", ");
 			string.append("consumo= ").append(Arrays.toString(consumo));
 			primero = false;
 		}
 		if (numeroMesa != null) {
-			if (!primero) string.append(", ");
+			if (!primero)
+				string.append(", ");
 			string.append("número de mesa= ").append(numeroMesa);
 		}
 
@@ -78,12 +83,19 @@ public class Mesa {
 				cantidad--;
 				return;
 			}
-			for(int j = 0; j <this.consumo.length; j ++) {
-				if(this.consumo[i] == null) {
+			for (int j = 0; j < this.consumo.length; j++) {
+				if (this.consumo[i] == null) {
 					this.consumo[i] = this.consumo[i + 1];
 					this.consumo[i + 1] = null;
 				}
 			}
 		}
+	}
+
+	public Double getGastoMesa() {
+		for (int i = 0; i < this.cantidad; i++) {
+			this.gastoMesa += consumo[i].calcularPrecio();
+		}
+		return this.gastoMesa;
 	}
 }
