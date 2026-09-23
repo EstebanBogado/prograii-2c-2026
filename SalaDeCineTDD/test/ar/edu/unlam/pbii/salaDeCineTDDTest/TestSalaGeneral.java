@@ -2,12 +2,21 @@ package ar.edu.unlam.pbii.salaDeCineTDDTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
+
 import ar.edu.unlam.pbii.salaDeCineTDD.Butaca;
 import ar.edu.unlam.pbii.salaDeCineTDD.Pelicula;
 import ar.edu.unlam.pbii.salaDeCineTDD.Sala;
+import ar.edu.unlam.pbii.salaDeCineTDD.SalaGeneral;
 import ar.edu.unlam.pbii.salaDeCineTDD.Tipo;
 
-class Test {
+class TestSalaGeneral {
+	Sala salaGeneral;
+
+	@BeforeEach
+	void setup() {
+		salaGeneral = new SalaGeneral(7, 4);
+	}
 
 	@org.junit.jupiter.api.Test
 	void crearUnaButacaYQueEsteDisponible() {
@@ -23,51 +32,64 @@ class Test {
 	}
 
 	@org.junit.jupiter.api.Test
-	void crearUnaSalaDeCineConSusButacasYUnaPeliculaEnCartelera() {
-		Sala sala1 = new Sala(7, 4);
+	void contarLaCantidadDeBoletosVendidosYQueNoSeVendaDosVecesElMismoAsiento() {
 		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
-		assertEquals(28, sala1.getCantButacas());
-		sala1.proyectarPelicula(starWars);
-		assertNotNull(sala1.getPelicula());
+		salaGeneral.proyectarPelicula(starWars);
+		salaGeneral.venderBoleto(5, 3, 18);
+		salaGeneral.venderBoleto(5, 2, 18);
+		salaGeneral.venderBoleto(6, 1, 18);
+		salaGeneral.venderBoleto(5, 3, 18); //Asiento ocupado al momento de querer realizar la operación
+		
+		assertEquals(Integer.valueOf(3), salaGeneral.boletosVendidos());
 	}
 
 	@org.junit.jupiter.api.Test
-	void crearUnaSalaDeCineConSusButacasYCambiarLaPeliculaProextada() {
-		Sala sala1 = new Sala(7, 4);
+	void crearUnaSalaDeCineConSetearleElVolumenYQueDevuelvaElValorCincuenta() {
+		salaGeneral.setVolumen(50);
+		assertEquals(Integer.valueOf(50), salaGeneral.getVolumen());
+	}
+
+	@org.junit.jupiter.api.Test
+	void crearUnaSalaDeCineConSusButacasYUnaPeliculaEnCartelera() {
+		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
+		assertEquals(28, salaGeneral.getCantButacas());
+		salaGeneral.proyectarPelicula(starWars);
+		assertNotNull(salaGeneral.getPelicula());
+	}
+
+	@org.junit.jupiter.api.Test
+	void crearUnaSalaDeCineConSusButacasYCambiarLaPeliculaProyectada() {
 		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
 		Pelicula toyStory = new Pelicula("Toy Story", 89, 0, Tipo.INFANTIL);
-		sala1.proyectarPelicula(starWars);
-		sala1.cambiarPelicula(toyStory);
-		assertNotNull(sala1.getPelicula());
+		salaGeneral.proyectarPelicula(starWars);
+		salaGeneral.cambiarPelicula(toyStory);
+		assertNotNull(salaGeneral.getPelicula());
 	}
 
 	@org.junit.jupiter.api.Test
 	void crearUnaSalaDeCineConSusButacasYProyectarUnaPeliculaYVenderBoletos() {
-		Sala sala1 = new Sala(7, 4);
 		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
-		sala1.proyectarPelicula(starWars);
-		sala1.venderBoleto(5, 3, 17);
-		assertEquals(27, sala1.butacasDisponibles());
+		salaGeneral.proyectarPelicula(starWars);
+		salaGeneral.venderBoleto(5, 3, 17);
+		assertEquals(Integer.valueOf(27), salaGeneral.butacasDisponibles());
 	}
 
 	@org.junit.jupiter.api.Test
 	void crearUnaSalaDeCineConSusButacasYProyectarUnaPeliculaYVenderButacasInexistentes() {
-		Sala sala1 = new Sala(7, 4);
 		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
-		sala1.proyectarPelicula(starWars);
-		sala1.venderBoleto(-7, 3, 17);
-		assertEquals(28, sala1.butacasDisponibles());
+		salaGeneral.proyectarPelicula(starWars);
+		salaGeneral.venderBoleto(-7, 3, 17);
+		assertEquals(Integer.valueOf(28), salaGeneral.butacasDisponibles());
 	}
 
 	@org.junit.jupiter.api.Test
 	void crearUnaSalaDeCineConSusButacasYProyectarUnaPeliculaYVenderButacasYDevolverla() {
-		Sala sala1 = new Sala(7, 4);
 		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
-		sala1.proyectarPelicula(starWars);
-		sala1.venderBoleto(6, 3, 17);
-		assertEquals(27, sala1.butacasDisponibles());
-		sala1.devolverBoleto(6, 3);
-		assertEquals(28, sala1.butacasDisponibles());
+		salaGeneral.proyectarPelicula(starWars);
+		salaGeneral.venderBoleto(6, 3, 17);
+		assertEquals(Integer.valueOf(27), salaGeneral.butacasDisponibles());
+		salaGeneral.devolverBoleto(6, 3);
+		assertEquals(Integer.valueOf(28), salaGeneral.butacasDisponibles());
 	}
 
 	@org.junit.jupiter.api.Test
@@ -75,6 +97,5 @@ class Test {
 		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
 		starWars.setSinopsis("Pelicula de ciencia ficción y fantasía!!!");
 		assertNotNull(starWars.getSinopsis());
-		System.out.println("Sinopsis: " + starWars.getSinopsis());
 	}
 }

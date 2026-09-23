@@ -1,13 +1,14 @@
 package ar.edu.unlam.pbii.salaDeCineTDD;
 
-public class Sala {
+public abstract class Sala {
 
-	private Butaca[][] butacas;
-	private Pelicula pelicula;
-	private Integer cantButacas = 0;
-	private Integer butacasOcupadas = 0;
-	private Integer filas;
-	private Integer columnas;
+	protected Butaca[][] butacas;
+	protected Pelicula pelicula;
+	protected Integer cantButacas = 0;
+	protected Integer butacasOcupadas = 0;
+	protected Integer filas;
+	protected Integer columnas;
+	protected Integer volumen;
 
 	public Sala(Integer filas, Integer columnas) {
 		this.filas = filas;
@@ -19,6 +20,14 @@ public class Sala {
 				cantButacas++;
 			}
 		}
+	}
+
+	public abstract void setVolumen(Integer volumen);
+
+	public abstract Integer getVolumen();
+
+	public Integer boletosVendidos() {
+		return butacasOcupadas();
 	}
 
 	public void proyectarPelicula(Pelicula pelicula) {
