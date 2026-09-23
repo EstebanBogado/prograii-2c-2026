@@ -6,6 +6,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ar.edu.unlam.pbii.salaDeCineTDD.Pelicula;
+import ar.edu.unlam.pbii.salaDeCineTDD.Sala4D;
+import ar.edu.unlam.pbii.salaDeCineTDD.Tipo;
+
 class TestSala4D {
 
 	@BeforeAll
@@ -13,12 +17,13 @@ class TestSala4D {
 	}
 
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() {
+		Sala4D sala4D = new Sala4D(7, 4);
 	}
 
-	@Test
-	void test() {
-		fail("Not yet implemented");
+	@org.junit.jupiter.api.Test
+	void crearUnaPeliculaConTodosSusParametros() {
+		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
+		assertNotNull(starWars);
 	}
-
 }
