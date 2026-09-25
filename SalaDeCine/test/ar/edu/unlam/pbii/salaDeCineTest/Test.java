@@ -7,7 +7,7 @@ import ar.edu.unlam.pbii.salaDeCine.SalaDeCine;
 public class Test {
 
 	public static void main(String[] args) {
-		SalaDeCine sala1 = new SalaDeCine(16, 15);
+		SalaDeCine sala1 = new SalaDeCine(6, 5);
 		SalaDeCine sala2 = new SalaDeCine(7, 4);
 		Pelicula starWars = new Pelicula("Star Wars", Genero.SUSPENSO, 180, 16);
 		Pelicula toyStory5 = new Pelicula("Toy Story 5", Genero.INFANTIL, 90, 0);
