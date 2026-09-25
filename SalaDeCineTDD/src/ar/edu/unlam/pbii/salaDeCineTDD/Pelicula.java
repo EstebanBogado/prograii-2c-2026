@@ -4,10 +4,10 @@ public class Pelicula {
 	private String titulo;
 	private Integer duracion;
 	private Integer edadMinima;
-	private Tipo categoria;
+	private Genero categoria;
 	private String sinopsis;
 
-	public Pelicula(String titulo, Integer duracion, Integer edadMinima, Tipo categoria) {
+	public Pelicula(String titulo, Integer duracion, Integer edadMinima, Genero categoria) {
 		this.titulo = titulo;
 		this.duracion = duracion;
 		this.edadMinima = edadMinima;

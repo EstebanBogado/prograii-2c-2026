@@ -8,7 +8,7 @@ import ar.edu.unlam.pbii.salaDeCineTDD.Butaca;
 import ar.edu.unlam.pbii.salaDeCineTDD.Pelicula;
 import ar.edu.unlam.pbii.salaDeCineTDD.Sala;
 import ar.edu.unlam.pbii.salaDeCineTDD.SalaGeneral;
-import ar.edu.unlam.pbii.salaDeCineTDD.Tipo;
+import ar.edu.unlam.pbii.salaDeCineTDD.Genero;
 
 class TestSalaGeneral {
 	Sala salaGeneral;
@@ -27,13 +27,13 @@ class TestSalaGeneral {
 
 	@org.junit.jupiter.api.Test
 	void crearUnaPeliculaConTodosSusParametros() {
-		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
+		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Genero.CIENCIA_FICCION);
 		assertNotNull(starWars);
 	}
 
 	@org.junit.jupiter.api.Test
 	void contarLaCantidadDeBoletosVendidosYQueNoSeVendaDosVecesElMismoAsiento() {
-		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
+		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Genero.CIENCIA_FICCION);
 		salaGeneral.proyectarPelicula(starWars);
 		salaGeneral.venderBoleto(5, 3, 18);
 		salaGeneral.venderBoleto(5, 2, 18);
@@ -51,7 +51,7 @@ class TestSalaGeneral {
 
 	@org.junit.jupiter.api.Test
 	void crearUnaSalaDeCineConSusButacasYUnaPeliculaEnCartelera() {
-		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
+		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Genero.CIENCIA_FICCION);
 		assertEquals(28, salaGeneral.getCantButacas());
 		salaGeneral.proyectarPelicula(starWars);
 		assertNotNull(salaGeneral.getPelicula());
@@ -59,8 +59,8 @@ class TestSalaGeneral {
 
 	@org.junit.jupiter.api.Test
 	void crearUnaSalaDeCineConSusButacasYCambiarLaPeliculaProyectada() {
-		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
-		Pelicula toyStory = new Pelicula("Toy Story", 89, 0, Tipo.INFANTIL);
+		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Genero.CIENCIA_FICCION);
+		Pelicula toyStory = new Pelicula("Toy Story", 89, 0, Genero.INFANTIL);
 		salaGeneral.proyectarPelicula(starWars);
 		salaGeneral.cambiarPelicula(toyStory);
 		assertNotNull(salaGeneral.getPelicula());
@@ -68,7 +68,7 @@ class TestSalaGeneral {
 
 	@org.junit.jupiter.api.Test
 	void crearUnaSalaDeCineConSusButacasYProyectarUnaPeliculaYVenderBoletos() {
-		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
+		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Genero.CIENCIA_FICCION);
 		salaGeneral.proyectarPelicula(starWars);
 		salaGeneral.venderBoleto(5, 3, 17);
 		assertEquals(Integer.valueOf(27), salaGeneral.butacasDisponibles());
@@ -76,7 +76,7 @@ class TestSalaGeneral {
 
 	@org.junit.jupiter.api.Test
 	void crearUnaSalaDeCineConSusButacasYProyectarUnaPeliculaYVenderButacasInexistentes() {
-		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
+		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Genero.CIENCIA_FICCION);
 		salaGeneral.proyectarPelicula(starWars);
 		salaGeneral.venderBoleto(-7, 3, 17);
 		assertEquals(Integer.valueOf(28), salaGeneral.butacasDisponibles());
@@ -84,7 +84,7 @@ class TestSalaGeneral {
 
 	@org.junit.jupiter.api.Test
 	void crearUnaSalaDeCineConSusButacasYProyectarUnaPeliculaYVenderButacasYDevolverla() {
-		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
+		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Genero.CIENCIA_FICCION);
 		salaGeneral.proyectarPelicula(starWars);
 		salaGeneral.venderBoleto(6, 3, 17);
 		assertEquals(Integer.valueOf(27), salaGeneral.butacasDisponibles());
@@ -94,7 +94,7 @@ class TestSalaGeneral {
 
 	@org.junit.jupiter.api.Test
 	void crearUnaPeliculaYAgregarleLaSinopsis() {
-		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Tipo.CIENCIA_FICCION);
+		Pelicula starWars = new Pelicula("Star Wars: el regreso del jedi", 120, 16, Genero.CIENCIA_FICCION);
 		starWars.setSinopsis("Pelicula de ciencia ficción y fantasía!!!");
 		assertNotNull(starWars.getSinopsis());
 	}
