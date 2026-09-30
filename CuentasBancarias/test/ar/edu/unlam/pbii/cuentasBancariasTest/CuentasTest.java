@@ -15,13 +15,16 @@ class CuentasTest {
 	Cuenta cajaAhorro;
 	Cuenta cajaAhorro2;
 	Cuenta cuentaCorriente;
+	Cuenta cuentaCorriente1;
 
 	@BeforeEach
 	void setUp() {
 		cuentaSueldo = new CuentaSueldo("CD-1234", 2_000.0);
 		cajaAhorro = new CajaAhorro("CA-1234", 5_000.0);
 		cajaAhorro2 = new CajaAhorro("CA-2345", 10_000.0);
-		cuentaCorriente = new CuentaCorriente("CC-1234", 0.0);
+		cuentaCorriente = new CuentaCorriente("CC-1234", 0.0, 0.0);
+		cuentaCorriente1 = new CuentaCorriente("CC-2345", 100.0, 100.0);
+
 	}
 
 	@Test
@@ -59,6 +62,14 @@ class CuentasTest {
 
 		cuentaCorriente.depositar(1_000.0);
 		assertEquals(1_000.0, cuentaCorriente.getSaldo(), 0.0001);
+
+	}
+	
+	@Test
+	void queAlRetirar150PesosDeUnaCCConSaldoTotal200PesosElsaldoTotalSea47ConCincuenta() {
+
+		cuentaCorriente1.extraer(150.0);
+		assertEquals(47.50, cuentaCorriente1.getSaldo(), 0.0001);
 
 	}
 
