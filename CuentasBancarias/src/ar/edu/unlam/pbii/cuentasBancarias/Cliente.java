@@ -7,7 +7,6 @@ public class Cliente {
 	private long cuitCliente;
 	private String nombreCliente;
 	private List<Cuenta> cuentas = new ArrayList<Cuenta>();
-	private Double saldoGeneral = 0.0;
 
 	public Cliente(String nombreCliente, long cuitCliente) {
 		this.nombreCliente = nombreCliente;
@@ -23,11 +22,36 @@ public class Cliente {
 	}
 
 	public void agregarCuenta(Cuenta cuenta) {
-		cuentas.add(cuenta);
+		if (cuentas.contains(cuenta)) {
+			return;
+		} else {
+			cuentas.add(cuenta);
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		return Long.hashCode(cuitCliente);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return cuitCliente == other.cuitCliente;
 	}
 
 	public List<Cuenta> getCuentas() {
 		return this.cuentas;
+	}
+
+	public Integer getCantCtasCli() {
+		return this.cuentas.size();
 	}
 
 	@Override
@@ -37,16 +61,15 @@ public class Cliente {
 	}
 
 	public boolean esVip() {
-		for (Cuenta cuenta : cuentas) {
-			this.saldoGeneral += cuenta.getSaldo();
-		}
-		if (this.saldoGeneral >= 1_000_000.0)
-			return true;
-		return false;
+		return getSaldoGeneral() >= 1_000_000.0;
 	}
 
 	public Double getSaldoGeneral() {
-		return this.saldoGeneral;
+		Double total = 0.0;
+		for (Cuenta cuenta : cuentas) {
+			total += cuenta.getSaldo();
+		}
+		return total;
 	}
 
 	public void extraerDeCuenta(String nroCuenta, Double monto) {
