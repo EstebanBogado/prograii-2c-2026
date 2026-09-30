@@ -57,4 +57,10 @@ class ClienteTest {
 		cliente.extraerDeCuenta("CA-1234", 50_000.0);
 		assertEquals(950_000.0, cliente.getSaldoGeneral());
 	}
+
+	@Test
+	void mostrarDatosDelCliente() {
+
+		System.out.println(cliente.toString());
+	}
 }
