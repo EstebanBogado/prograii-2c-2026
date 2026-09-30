@@ -28,5 +28,10 @@ public abstract class Cuenta {
 			this.saldo += monto;
 	}
 
+	@Override
+	public String toString() {
+		return "Cuenta [nroCuenta=" + nroCuenta + ", saldoInicial=" + saldoInicial + ", saldo=" + saldo + "]";
+	}
+
 	public abstract void extraer(Double monto);
 }

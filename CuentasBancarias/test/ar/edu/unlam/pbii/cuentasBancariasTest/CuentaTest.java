@@ -10,7 +10,7 @@ import ar.edu.unlam.pbii.cuentasBancarias.CuentaCorriente;
 import ar.edu.unlam.pbii.cuentasBancarias.CajaAhorro;
 import ar.edu.unlam.pbii.cuentasBancarias.CuentaSueldo;
 
-class CuentasTest {
+class CuentaTest {
 	Cuenta cuentaSueldo;
 	Cuenta cajaAhorro;
 	Cuenta cajaAhorro2;
