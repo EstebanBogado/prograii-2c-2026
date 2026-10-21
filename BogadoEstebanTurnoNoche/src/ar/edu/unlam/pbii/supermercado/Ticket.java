@@ -1,4 +1,4 @@
-	package ar.edu.unlam.pbii.supermercado;
+package ar.edu.unlam.pbii.supermercado;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +17,13 @@ public abstract class Ticket {
 		return nroTicket;
 	}
 
-	public Boolean agregarProducto(Producto producto) {
+	public Boolean agregarProducto(Producto producto) throws ProductoSinStockException, ProductoInexistenteException {
 		if (producto != null && producto.getExistencias() > 0) {
 			productos.add(producto);
 			producto.quitarDeStock();
 			return true;
 		}
 		return false;
-
 	}
 
 	public Integer getProductos() {
