@@ -7,7 +7,7 @@ public abstract class Ticket {
 
 	protected String nroTicket;
 	protected Double monto;
-	protected List<Producto> productos = new ArrayList<Producto>();
+	protected List<Producto> productos = new ArrayList<>();
 
 	public Ticket(String nroTicket) {
 		this.nroTicket = nroTicket;

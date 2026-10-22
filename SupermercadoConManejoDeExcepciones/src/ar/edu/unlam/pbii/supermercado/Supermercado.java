@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Supermercado {
 
-	private List<Ticket> tickets = new ArrayList<Ticket>();
+	private List<Ticket> tickets = new ArrayList<>();
 	private String nombre;
 
 	public Supermercado(String nombre) {

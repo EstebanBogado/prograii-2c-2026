@@ -35,7 +35,9 @@ class Test {
 		ticket.agregarProducto(leche);
 		ticket.agregarProducto(pan);
 		assertEquals(Integer.valueOf(2), ticket.getCantProd());
+//		ticket.agregarProducto(cocucha); // punto donde falla el test
 		assertThrows(ProductoSinStocException.class, () -> ticket.agregarProducto(cocucha));
+
 	}
 
 	@org.junit.jupiter.api.Test
@@ -61,6 +63,7 @@ class Test {
 
 		assertThrows(TicketRepetidoException.class, () -> supermercado.agregarTicket(ticket));
 		assertEquals(Integer.valueOf(1), supermercado.cantTickets());
+
 	}
 
 }
