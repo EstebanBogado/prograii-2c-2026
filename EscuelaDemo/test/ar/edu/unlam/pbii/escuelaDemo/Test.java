@@ -23,7 +23,8 @@ class Test {
 	}
 
 	@org.junit.jupiter.api.Test
-	void crearUnAlumnoConPromedioGeneralMayorADiez() throws NotaPromedioGeneralInvalidaException {
+	void crearUnAlumnoConPromedioGeneralMayorADiezYQueArrojeNotaPromedioGeneralInvalidaException()
+			throws NotaPromedioGeneralInvalidaException {
 
 		assertThrows(NotaPromedioGeneralInvalidaException.class,
 				() -> new Alumno("2345678", "Pérez", "María", "primero", "A", 17.8));
@@ -77,7 +78,7 @@ class Test {
 
 		normalSuperior.agregarAlumno(a1);
 		normalSuperior.agregarAlumno(a2);
-		normalSuperior.agregarAlumno(a4);
+		normalSuperior.agregarAlumno(a4);tiro
 
 		normalSuperior.agregarDocente(d1);
 		normalSuperior.agregarDocente(d2);
@@ -134,7 +135,22 @@ class Test {
 		assertTrue(libro.estaDisponible());
 		assertTrue(notebook.estaDisponible());
 		assertTrue(pizarra.estaDisponible());
+	}
 
+	@org.junit.jupiter.api.Test
+	void queAlAlquilarUnaPizarraUnaNotebookYUnLibroYaNoEstenDisponiblesParaAlquilarlos() {
+
+		ItemAlquilable libro = new Libro("Cien años de soledad", "123-456-789-0123");
+		ItemAlquilable pizarra = new Pizarra(Tamanio.GRANDE, "PG-123456");
+		ItemAlquilable notebook = new Notebook(Marca.LENOVO, "NL-123456");
+
+		libro.alquilar();
+		pizarra.alquilar();
+		notebook.alquilar();
+
+		assertFalse(libro.estaDisponible());
+		assertFalse(notebook.estaDisponible());
+		assertFalse(pizarra.estaDisponible());
 	}
 
 }

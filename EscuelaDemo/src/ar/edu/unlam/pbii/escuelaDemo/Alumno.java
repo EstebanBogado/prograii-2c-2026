@@ -6,7 +6,8 @@ public class Alumno extends Persona {
 	private String division;
 	private Double promGeneral;
 
-	public Alumno(String dni, String apellido, String nombre, String anioCursada, String division, Double promGeneral) throws NotaPromedioGeneralInvalidaException {
+	public Alumno(String dni, String apellido, String nombre, String anioCursada, String division, Double promGeneral)
+			throws NotaPromedioGeneralInvalidaException {
 		super(dni, apellido, nombre);
 		this.anioCursada = anioCursada;
 		this.division = division;
@@ -34,15 +35,4 @@ public class Alumno extends Persona {
 				+ promGeneral + "]\n";
 	}
 
-//	@Override
-//	public int compareTo(Persona p) {
-//
-//		Alumno alumno = (Alumno) p;
-//
-//		int resultado = this.anioCursada.compareTo(alumno.anioCursada);
-//		if (resultado == 0) {
-//			resultado = this.dni.compareTo(alumno.dni);
-//		}
-//		return resultado;
-//	}
 }

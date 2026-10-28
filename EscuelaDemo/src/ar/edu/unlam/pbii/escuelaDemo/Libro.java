@@ -1,29 +1,18 @@
 package ar.edu.unlam.pbii.escuelaDemo;
 
-public class Libro implements Alquilable {
-	
+public class Libro extends ItemAlquilable {
+
 	private String nombre;
-	private String isbn;
 
 	public Libro(String nombre, String isbn) {
+
+		super(isbn);
 		this.nombre = nombre;
-		this.isbn = isbn;
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	public String getIsbn() {
-		return isbn;
-	}
-
-//	@Override
-//	public Boolean estaDisponible() {
-//		// TODO Auto-generated method stub
-//		return true;
-//	}
-
 	
-
 }
