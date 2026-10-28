@@ -3,7 +3,7 @@ package ar.edu.unlam.pbii.escuelaDemo;
 public abstract class ItemAlquilable implements Alquilable {
 
 	protected String nroSerie;
-	protected Boolean disponible;
+	protected Boolean disponible = true;
 
 	public ItemAlquilable(String nroSerie) {
 		this.nroSerie = nroSerie;
@@ -21,6 +21,11 @@ public abstract class ItemAlquilable implements Alquilable {
 		// TODO Auto-generated method stub
 		return disponible = false;
 
+	}
+	
+	public void alquilar(Persona persona) {
+		if(disponible)
+			disponible = false;
 	}
 
 	public Boolean getDisponible() {

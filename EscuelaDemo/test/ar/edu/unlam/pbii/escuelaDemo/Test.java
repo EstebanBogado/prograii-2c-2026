@@ -78,7 +78,7 @@ class Test {
 
 		normalSuperior.agregarAlumno(a1);
 		normalSuperior.agregarAlumno(a2);
-		normalSuperior.agregarAlumno(a4);tiro
+		normalSuperior.agregarAlumno(a4);
 
 		normalSuperior.agregarDocente(d1);
 		normalSuperior.agregarDocente(d2);
@@ -138,15 +138,26 @@ class Test {
 	}
 
 	@org.junit.jupiter.api.Test
-	void queAlAlquilarUnaPizarraUnaNotebookYUnLibroYaNoEstenDisponiblesParaAlquilarlos() {
+	void queAlAlquilarUnaPizarraUnaNotebookYUnLibroYaNoEstenDisponiblesParaAlquilarlos() throws NotaPromedioGeneralInvalidaException {
 
 		ItemAlquilable libro = new Libro("Cien años de soledad", "123-456-789-0123");
 		ItemAlquilable pizarra = new Pizarra(Tamanio.GRANDE, "PG-123456");
 		ItemAlquilable notebook = new Notebook(Marca.LENOVO, "NL-123456");
+		
+		Persona d1 = new Docente("D-1234", "1234567", "Gómez", "Juan", "Historia");
+		Persona d2 = new Docente("D-2345", "3698521", "Skodnick", "Vodgan", "Matematicas");
+		Persona d3 = new Docente("D-3456", "6547892", "Báez", "Pedro", "Física");
+		Persona d4 = new Docente("D-4567", "4561239", "skodnick", "Analía", "Álgebra");
 
-		libro.alquilar();
-		pizarra.alquilar();
-		notebook.alquilar();
+		Persona a1 = new Alumno("2345678", "Pérez", "María", "1", "A", 7.8);
+		Persona a2 = new Alumno("9874562", "Páez", "Ariel", "2", "B", 8.8);
+		Persona a3 = new Alumno("8765432", "Giménez", "Juan", "1", "A", 6.8);
+		Persona a4 = new Alumno("1478523", "Pérez", "María", "3", "C", 10.0);
+		Persona a5 = new Alumno("1234567", "González", "Martín", "4", "C", 6.0);
+
+		libro.alquilar(a1);
+		pizarra.alquilar(a2);
+		notebook.alquilar(a3);
 
 		assertFalse(libro.estaDisponible());
 		assertFalse(notebook.estaDisponible());
