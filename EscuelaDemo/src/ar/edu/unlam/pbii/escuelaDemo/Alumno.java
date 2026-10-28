@@ -6,12 +6,14 @@ public class Alumno extends Persona {
 	private String division;
 	private Double promGeneral;
 
-	public Alumno(String dni, String apellido, String nombre, String anioCursada, String division, Double promGeneral) {
+	public Alumno(String dni, String apellido, String nombre, String anioCursada, String division, Double promGeneral) throws NotaPromedioGeneralInvalidaException {
 		super(dni, apellido, nombre);
 		this.anioCursada = anioCursada;
 		this.division = division;
-		
-		this.promGeneral = promGeneral;
+		if (promGeneral <= 0.0 || promGeneral > 10.0)
+			throw new NotaPromedioGeneralInvalidaException("El promedio general debe estar entre 1 y 10");
+		else
+			this.promGeneral = promGeneral;
 	}
 
 	public String getAnioCursada() {

@@ -14,7 +14,7 @@ class Test {
 	}
 
 	@org.junit.jupiter.api.Test
-	void crearUnAlumnoYUnDocenteQueExtiendanDePersona() {
+	void crearUnAlumnoYUnDocenteQueExtiendanDePersona() throws NotaPromedioGeneralInvalidaException {
 		Persona d1 = new Docente("D-1234", "1234567", "Gómez", "Juan", "Historia");
 		Persona a1 = new Alumno("2345678", "Pérez", "María", "primero", "A", 7.8);
 
@@ -23,7 +23,15 @@ class Test {
 	}
 
 	@org.junit.jupiter.api.Test
-	void crearLaEscuelaYAgregarleDocentesYAlumnos() throws PersonaConDNIRepetidoException {
+	void crearUnAlumnoConPromedioGeneralMayorADiez() throws NotaPromedioGeneralInvalidaException {
+
+		assertThrows(NotaPromedioGeneralInvalidaException.class,
+				() -> new Alumno("2345678", "Pérez", "María", "primero", "A", 17.8));
+	}
+
+	@org.junit.jupiter.api.Test
+	void crearLaEscuelaYAgregarleDocentesYAlumnos()
+			throws PersonaConDNIRepetidoException, NotaPromedioGeneralInvalidaException {
 		Docente d1 = new Docente("D-1234", "1234567", "Gómez", "Juan", "Historia");
 		Docente d2 = new Docente("D-2345", "3698521", "Skodnick", "Vodgan", "Matematicas");
 		Docente d3 = new Docente("D-3456", "6547892", "Báez", "Pedro", "Física");
@@ -54,7 +62,7 @@ class Test {
 
 	@org.junit.jupiter.api.Test
 	void crearLaEscuelaYAgregarleDocentesYAlumnosYQueAlIngresarDNIRepetidosArrojeExcepcion()
-			throws PersonaConDNIRepetidoException {
+			throws PersonaConDNIRepetidoException, NotaPromedioGeneralInvalidaException {
 		Docente d1 = new Docente("D-1234", "1234567", "Gómez", "Juan", "Historia");
 		Docente d2 = new Docente("D-2345", "3698521", "Skodnick", "Vodgan", "Matematicas");
 		Docente d3 = new Docente("D-3456", "6547892", "Báez", "Pedro", "Física");
@@ -82,7 +90,8 @@ class Test {
 	}
 
 	@org.junit.jupiter.api.Test
-	void creadoUnListadoDeAlumnosQueOrdenePorMeritoYTambienPorAnioCursada() throws PersonaConDNIRepetidoException {
+	void creadoUnListadoDeAlumnosQueOrdenePorMeritoYTambienPorAnioCursada()
+			throws PersonaConDNIRepetidoException, NotaPromedioGeneralInvalidaException {
 		Docente d1 = new Docente("D-1234", "1234567", "Gómez", "Juan", "Historia");
 		Docente d2 = new Docente("D-2345", "3698521", "Skodnick", "Vodgan", "Matematicas");
 		Docente d3 = new Docente("D-3456", "6547892", "Báez", "Pedro", "Física");
