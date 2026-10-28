@@ -1,0 +1,21 @@
+UNIVERSIDAD NACIONAL DE LA MATANZA
+PROGRAMACION BASICA II - PRACTICA INTEGRADORA: GESTION ESCOLAR
+ 
+Una institucion educativa necesita un sistema para administrar a sus profesores, alumnos y los recursos materiales que presta diariamente.
+ 
+Tanto los profesores como los alumnos son personas con DNI, apellido y nombre. Para garantizar la identidad de cada individuo en el establecimiento,
+el sistema no debe permitir que se registren dos personas con el mismo DNI bajo ninguna circunstancia. Ademas, las personas cuentan con un orden 
+natural alfabetico dado por apellido y nombre (desempatando por DNI ante personas homonimas). Los profesores suman legajo y materia, conservando 
+dicho orden natural. Por su parte, los alumnos agregan anio de cursada, division y promedio general; y requieren listarse bajo otros criterios: 
+un orden escolar (por anio, division, apellido y nombre) y un orden de merito para el Cuadro de Honor (por promedio de mayor a menor).
+ 
+Por otro lado, la escuela dispone de distintos recursos: notebooks, libros y pizarras. Estos pueden alquilarse (son alquilables) indistintamente tanto a un 
+docente como a un alumno, sabiendo en todo momento a quien esta asignado y permitiendo su posterior devolución.
+ 
+La administracion central estara a cargo de la clase Escuela. Esta garantizara el registro unico de personas por DNI, administrara los recursos disponibles y 
+brindara metodos para obtener las listas ordenadas de profesores (orden natural), alumnos por curso (orden escolar) y el Cuadro de Honor por promedio. 
+Tambien gestionara las operaciones de prestamo y recepcion de recursos.
+ 
+El sistema debe operar de forma segura controlando excepciones de negocio: no se puede prestar un recurso ya ocupado, ni devolver uno no prestado, 
+ni admitir personas duplicadas por DNI o alumnos con notas invalidas (fuera del rango de 1 a 10). La solucion contara con tests unitarios en JUnit 5 
+que comprueben la logica, el control de errores y el recorrido ordenado de las colecciones mediante Iterators.
