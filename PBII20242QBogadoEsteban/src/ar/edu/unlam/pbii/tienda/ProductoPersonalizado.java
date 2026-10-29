@@ -1,5 +1,6 @@
 package ar.edu.unlam.pbii.tienda;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoPersonalizado extends Producto {
@@ -8,16 +9,16 @@ public class ProductoPersonalizado extends Producto {
 	private Double precio;
 	private String descripcionProducto;
 	private Integer existencias;
-	private List<String> caracteristicas;
+	private List<Caracteristica> caracteristicas;
 
 	public ProductoPersonalizado(Integer codProducto, String nombreProducto, Double precio, String descripicionProducto,
-			Integer existencias, List<String> caracteristicas) {
+			Integer existencias, List<Caracteristica> caracteristicas) {
 		super(codProducto);
 		this.nombreProducto = nombreProducto;
 		this.precio = precio;
 		this.descripcionProducto = descripicionProducto;
 		this.existencias = existencias;
-		this.caracteristicas = caracteristicas;
+		this.caracteristicas = new ArrayList<Caracteristica>();
 	}
 
 	public String getNombreProducto() {
@@ -36,10 +37,12 @@ public class ProductoPersonalizado extends Producto {
 		return existencias;
 	}
 
-	public List<String> getCaracteristicas() {
-		return caracteristicas;
+	public List<Caracteristica> getCaracteristicas() {
+		return this.caracteristicas;
 	}
 
-
+	public Boolean agregarCaracteristica(Caracteristica caracteristica) {
+		return this.caracteristicas.add(caracteristica);
+	}
 
 }

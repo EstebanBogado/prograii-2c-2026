@@ -3,7 +3,7 @@ package ar.edu.unlam.pbii.tienda;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Tienda {
+public class Tienda implements {
 
 	private Set<Producto> productos;
 
@@ -17,8 +17,22 @@ public class Tienda {
 	}
 
 	public Set<Producto> getProductos() {
-		// TODO Auto-generated method stub
 		return this.productos;
 	}
+
+	public void agregarCaracteristicaAProducto(Producto producto, Caracteristica caracteristica)
+			throws ProductoNoEncontradoException, ProductoNoSoportadoException {
+
+		if (producto instanceof ProductoPersonalizado)
+			producto.agregarCaracteristica(caracteristica);
+		else
+			throw new ProductoNoSoportadoException("Este producto no es personalizable");
+	}
+
+	public void ordenarPorDimension() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

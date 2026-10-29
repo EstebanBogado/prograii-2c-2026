@@ -62,6 +62,17 @@ class TiendaTest {
 		ProductoPersonalizado caja = new ProductoPersonalizado(11, "Caja de regalo personalizada", 18.0,
 				"Caja de madera con grabado personalizado", 15, new ArrayList<>());
 		assertNotNull(productoPersonalizado);
+		assertNotNull(caja);
+		assertNotNull(poster);
+		assertNotNull(libro);
+		assertNotNull(puzzle);
+		assertNotNull(funda);
+		assertNotNull(joya);
+		assertNotNull(almohada);
+		assertNotNull(camiseta);
+		assertNotNull(taza);
+		assertNotNull(tarta);
+
 	}
 
 	@Test
@@ -73,6 +84,8 @@ class TiendaTest {
 				"Explora un mundo pixelado lleno de aventuras", 30, "EXE", 500);
 		ProductoDigital productoDigital1 = new ProductoDigital(10, "Juego: Pixel Adventure", 14.99,
 				"Explora un mundo pixelado lleno de aventuras", 30, "EXE", 500);
+		ProductoPersonalizado productoPeronlizado = new ProductoPersonalizado(5, "Almohada personalizada", 25.0,
+				"Almohada de microfibra con foto", 15, new ArrayList<>());
 		ProductoPersonalizado almohada = new ProductoPersonalizado(5, "Almohada personalizada", 25.0,
 				"Almohada de microfibra con foto", 15, new ArrayList<>());
 		ProductoPersonalizado joya = new ProductoPersonalizado(6, "Joyería personalizada", 50.0,
@@ -87,6 +100,7 @@ class TiendaTest {
 				"Póster enmarcado con diseño personalizado", 20, new ArrayList<>());
 		ProductoPersonalizado caja = new ProductoPersonalizado(11, "Caja de regalo personalizada", 18.0,
 				"Caja de madera con grabado personalizado", 15, new ArrayList<>());
+
 		tienda.agregarProducto(productoFisico);
 		tienda.agregarProducto(productoDigital);
 		tienda.agregarProducto(productoDigital1);
@@ -122,51 +136,66 @@ class TiendaTest {
 		// Verificar que el carrito tenga un producto
 		assertEquals(4, cliente.getCarrito().getProductos().size());
 	}
+
 //
-//    @Test
-//    public void queUnProductoPersonalizadoPuedeAgregarCaracteristicas() {
-//    	Tienda tienda = new Tienda();
-//    	
-//        ProductoPersonalizado productoPersonalizado = new ProductoPersonalizado(6, "Joyería personalizada", 50.0, "Collar con nombre grabado", 10, new ArrayList<>());
-//        tienda.agregarProducto(productoPersonalizado);
-//        
-//        try {
-//			tienda.agregarCaracteristicaAProducto(productoPersonalizado, Caracteristica.LOGO_PERSONAL);
-//			tienda.agregarCaracteristicaAProducto(productoPersonalizado, Caracteristica.COLOR_AZUL);
-//	        tienda.agregarCaracteristicaAProducto(productoPersonalizado, Caracteristica.GRABADO);
-//		} catch (ProductoNoEncontradoException e) {
-//			assertTrue(false);
-//		} catch (ProductoNoSoportadoException e) {
-//			assertTrue(false);
-//		}
-//        
-//        assertEquals(3, productoPersonalizado.getCaracteristicas().size());
-//    }
-//
-//    @Test
-//    public void queUnProductoFisicoNoPuedaAgregarCaracteristicas() {
-//    	Tienda tienda = new Tienda();
-//    	ProductoFisico productoFisico = new ProductoFisico(4, "Camiseta", 45.0, "Camiseta de Futbol de River", 10, 0.5, "10x20x5");
-//    	ProductoDigital productoDigital = new ProductoDigital(9, "Libro: Introducción a la inteligencia artificial", 29.99, "Explora los conceptos básicos de la IA", 80, "EPUB", 300);
-//    	tienda.agregarProducto(productoFisico);
-//    	tienda.agregarProducto(productoDigital);
-//        
-//        assertThrows(ProductoNoSoportadoException.class, () -> {
-//            tienda.agregarCaracteristicaAProducto(productoFisico, Caracteristica.LOGO_PERSONAL);
-//        });
-//        
-//        
-//        assertThrows(ProductoNoSoportadoException.class, () -> {
-//            tienda.agregarCaracteristicaAProducto(productoDigital, Caracteristica.COLOR_VERDE);
-//        });
-//    }
-//
-//    @Test
-//    public void obtenerListadoDeProductosFisicosOrdenadosPorDimension() {
-//        // Implementar la lógica para ordenar los productos físicos por dimensión
-//
-//    }
-//
+	@Test
+	public void queUnProductoPersonalizadoPuedeAgregarCaracteristicas() {
+		Tienda tienda = new Tienda();
+
+		ProductoPersonalizado productoPersonalizado = new ProductoPersonalizado(6, "Joyería personalizada", 50.0,
+				"Collar con nombre grabado", 10, new ArrayList<>());
+		tienda.agregarProducto(productoPersonalizado);
+
+		try {
+			tienda.agregarCaracteristicaAProducto(productoPersonalizado, Caracteristica.LOGO_PERSONAL);
+			tienda.agregarCaracteristicaAProducto(productoPersonalizado, Caracteristica.COLOR_AZUL);
+			tienda.agregarCaracteristicaAProducto(productoPersonalizado, Caracteristica.GRABADO);
+		} catch (ProductoNoEncontradoException e) {
+			assertTrue(false);
+		} catch (ProductoNoSoportadoException e) {
+			assertTrue(false);
+		}
+
+		assertEquals(3, productoPersonalizado.getCaracteristicas().size());
+	}
+
+	@Test
+	public void queUnProductoFisicoNoPuedaAgregarCaracteristicas() {
+		Tienda tienda = new Tienda();
+		ProductoFisico productoFisico = new ProductoFisico(4, "Camiseta", 45.0, "Camiseta de Futbol de River", 10, 0.5,
+				"10x20x5");
+		ProductoDigital productoDigital = new ProductoDigital(9, "Libro: Introducción a la inteligencia artificial",
+				29.99, "Explora los conceptos básicos de la IA", 80, "EPUB", 300);
+		tienda.agregarProducto(productoFisico);
+		tienda.agregarProducto(productoDigital);
+
+		assertThrows(ProductoNoSoportadoException.class, () -> {
+			tienda.agregarCaracteristicaAProducto(productoFisico, Caracteristica.LOGO_PERSONAL);
+		});
+
+		assertThrows(ProductoNoSoportadoException.class, () -> {
+			tienda.agregarCaracteristicaAProducto(productoDigital, Caracteristica.COLOR_VERDE);
+		});
+	}
+
+	@Test
+	public void obtenerListadoDeProductosFisicosOrdenadosPorDimension() {
+		// Implementar la lógica para ordenar los productos físicos por dimensión
+		ProductoFisico productoFisico = new ProductoFisico(100, "Camiseta", 45.0, "Camiseta de Futbol de River", 10,
+				0.5, "15x20x5");
+		ProductoFisico productoFisico1 = new ProductoFisico(110, "Camiseta", 45.0, "Camiseta de Futbol de River", 10,
+				0.5, "10x25x5");
+		ProductoFisico productoFisico2 = new ProductoFisico(120, "Camiseta", 45.0, "Camiseta de Futbol de River", 10,
+				0.5, "10x20x8");
+		Tienda tienda = new Tienda();
+
+		tienda.agregarProducto(productoFisico);
+		tienda.agregarProducto(productoFisico1);
+		tienda.agregarProducto(productoFisico2);
+		
+		tienda.ordenarPorDimension();
+	}
+
 //    @Test
 //    public void obtenerListadoDeProductosDigitalesOrdenadosPorFormato() {
 //        // Implementar la lógica para ordenar los productos digitales por formato

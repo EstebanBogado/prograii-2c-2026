@@ -1,17 +1,15 @@
 package ar.edu.unlam.pbii.tienda;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Cliente {
 	private String nombreCliente;
 	private String dni;
-	private List<Producto> carrito;
+	private Carrito carritoCompras;
 
 	public Cliente(String nombreCliente, String dni) {
 		this.nombreCliente = nombreCliente;
 		this.dni = dni;
-		this.carrito = new ArrayList<Producto>();
+		this.carritoCompras = new Carrito();
+
 	}
 
 	public String getNombreCliente() {
@@ -22,9 +20,14 @@ public class Cliente {
 		return dni;
 	}
 
-	public void agregarProductoAlCarrito(Producto producto) {
+	public Boolean agregarProductoAlCarrito(Producto producto) {
 
-		
-		
+		return carritoCompras.agregarAlCarrito(producto);
+
 	}
+
+	public Carrito getCarrito() {
+		return this.carritoCompras;
+	}
+
 }
