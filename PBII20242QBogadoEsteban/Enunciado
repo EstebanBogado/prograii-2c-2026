@@ -1,0 +1,49 @@
+Consignas para la resolución del parcial
+
+    1. Crear un proyecto en Eclipse con el nombre “PBII20242QApellidoNombre” 
+    2. Actualizar el proyecto, siguiendo las consignas de la página siguiente.
+    3. Entregar el proyecto por prácticas de Miel.
+
+
+
+Enunciado
+Nos contratan para hacer una Tienda de regalos para desarrollar un software que les permita gestionar sus productos.
+Los productos se clasifican según el producto que Venden. Estos pueden ser:
+    • Productos Físicos (Peso, dimensión)
+    • Productos Digitales (tamaño Archivo, formato) 
+    • Productos Personalizados 
+Dependiendo del tipo de producto son los datos que se deben administrar. Es importante señalar que los productos poseen un código único que no se puede repetir. No es importante el orden en el que se almacenen los productos internamente.
+A Modo de ayuda se ofrece una serie de casos de prueba que se pueden utilizar como base para la resolución.
+
+Condiciones de aprobación.
+    • Se considerará desaprobado todo proyecto que:
+        a. No compile, o,
+        b. No se identifiquen los atributos necesarios para resolver lo solicitado, o,
+        c. Los tipos de datos elegidos para los atributos no sean los adecuados, o,
+        d. No reutilice el código en los casos que sea posible, aplicando los beneficios de la herencia y polimorfismo, o,
+        e. no cumpla con las condiciones mínimas descriptas a continuación.
+    • Se considerará aprobado, aquel examen que ejecute de manera correcta al menos el 60% basado en la ponderación de los siguientes test;
+    • Se considerará promocionado, aquel examen que ejecute de manera correcta al menos el 80% basado en la ponderación de los siguientes test:
+    
+queSePuedaCrearUnProductoFisico
+10%
+queSePuedaCrearUnProductoDigital
+10%
+queSePuedaCrearUnProductoPersonalizado
+10%
+queSePuedanIncorporarDistintosProductosALaTienda
+10%
+queSePuedaAgregarUnProductoAlCarritoDeUnCliente
+10%
+queUnProductoPersonalizadoPuedeAgregarCaracteristicas
+10%
+queUnProductoFisicoNoPuedaAgregarCaracteristicas
+10%
+obtenerListadoDeProductosFisicosOrdenadosPorDimension
+10%
+obtenerListadoDeProductosDigitalesOrdenadosPorFormato
+10%
+obtenerListadoDeProductosPersonalizadosCantidadDeCaracteristicas
+10%
+
+100%

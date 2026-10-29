@@ -68,7 +68,7 @@ public class Escuela {
 		// TODO Auto-generated method stub
 		return alumnos.toString();
 	}
-	
+
 	public String listarAlumnos(Comparator<Alumno> criterio) {
 
 		List<Alumno> ordenados = new ArrayList<>(alumnos);
