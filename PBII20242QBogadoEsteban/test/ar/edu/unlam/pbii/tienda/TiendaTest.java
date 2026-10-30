@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 class TiendaTest {
 
@@ -104,6 +105,7 @@ class TiendaTest {
 		tienda.agregarProducto(productoFisico);
 		tienda.agregarProducto(productoDigital);
 		tienda.agregarProducto(productoDigital1);
+		tienda.agregarProducto(productoPeronlizado);
 		tienda.agregarProducto(almohada);
 		tienda.agregarProducto(joya);
 		tienda.agregarProducto(funda);
@@ -192,15 +194,33 @@ class TiendaTest {
 		tienda.agregarProducto(productoFisico);
 		tienda.agregarProducto(productoFisico1);
 		tienda.agregarProducto(productoFisico2);
-		
-		tienda.ordenarPorDimension();
+
+		List<ProductoFisico> ordenadosPorDimension = new ArrayList<ProductoFisico>();
+		ordenadosPorDimension.addAll(tienda.ordenarProductoFisicoPorDimension());
+
+		assertEquals("10x20x8", ordenadosPorDimension.get(0).getDimensiones());
+		assertEquals("10x25x5", ordenadosPorDimension.get(1).getDimensiones());
+		assertEquals("15x20x5", ordenadosPorDimension.get(2).getDimensiones());
 	}
 
-//    @Test
-//    public void obtenerListadoDeProductosDigitalesOrdenadosPorFormato() {
-//        // Implementar la lógica para ordenar los productos digitales por formato
-//    }
-//
+	@Test
+	public void obtenerListadoDeProductosDigitalesOrdenadosPorFormato() {
+		// Implementar la lógica para ordenar los productos digitales por formato
+		ProductoDigital productoDigital = new ProductoDigital(4, "Juego: Pixel Adventure", 14.99,
+				"Explora un mundo pixelado lleno de aventuras", 30, "EXE", 500);
+		ProductoDigital productoDigital1 = new ProductoDigital(10, "Juego: Pixel Adventure", 14.99,
+				"Explora un mundo pixelado lleno de aventuras", 30, "EXE", 500);
+		ProductoDigital productoDigital2 = new ProductoDigital(1, "Libro electrónico", 9.99,
+				"El Señor de los anillos 2", 20, "PDF", 500);
+		ProductoDigital productoDigital3 = new ProductoDigital(2, "Curso de programación en Python", 49.99,
+				"Aprende a programar desde cero", 100, "MP4", 2000);
+		ProductoDigital productoDigital4 = new ProductoDigital(3, "Álbum: Música para relajarse", 7.99,
+				"10 canciones instrumentales", 50, "MP3", 150);
+		ProductoDigital productoDigital5 = new ProductoDigital(4, "Juego: Pixel Adventure", 14.99,
+				"Explora un mundo pixelado lleno de aventuras", 30, "EXE", 500);
+
+	}
+
 //    @Test
 //    public void obtenerListadoDeProductosPersonalizadosCantidadDeCaracteristicas() {
 //        // Implementar la lógica para obtener la cantidad de características de cada producto personalizado

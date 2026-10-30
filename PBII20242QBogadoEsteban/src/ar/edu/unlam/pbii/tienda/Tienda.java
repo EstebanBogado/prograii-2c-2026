@@ -2,8 +2,9 @@ package ar.edu.unlam.pbii.tienda;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
-public class Tienda implements {
+public class Tienda  {
 
 	private Set<Producto> productos;
 
@@ -29,9 +30,14 @@ public class Tienda implements {
 			throw new ProductoNoSoportadoException("Este producto no es personalizable");
 	}
 
-	public void ordenarPorDimension() {
-		// TODO Auto-generated method stub
+	public Set ordenarProductoFisicoPorDimension() {
 		
+		TreeSet<ProductoFisico> ordenados = new TreeSet<ProductoFisico>(new ProductosFisicosOrdenadosPorDimension());
+		for (Producto producto: productos) {
+			if(producto instanceof ProductoFisico)
+				ordenados.add( (ProductoFisico) producto);
+		}
+		return ordenados;
 	}
 
 

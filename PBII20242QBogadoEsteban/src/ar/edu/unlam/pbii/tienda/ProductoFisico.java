@@ -1,5 +1,7 @@
 package ar.edu.unlam.pbii.tienda;
 
+import java.util.Comparator;
+
 public class ProductoFisico extends Producto {
 
 	private String nombreProducto;
@@ -44,5 +46,4 @@ public class ProductoFisico extends Producto {
 		return dimensiones;
 	}
 
-	
 }
