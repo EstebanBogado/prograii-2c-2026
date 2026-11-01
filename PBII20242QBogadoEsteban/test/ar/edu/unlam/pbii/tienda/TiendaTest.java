@@ -6,12 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 class TiendaTest {
 
 	@Test
 	public void queSePuedaCrearUnProductoFisico() {
-		ProductoFisico productoFisico = new ProductoFisico(15, "Camiseta", 45.0, "Camiseta de Futbol", 10, 0.5,
-				"10x20x5");
+		ProductoFisico productoFisico = new ProductoFisico(15, "Camiseta", 45.0, "Camiseta de Futbol", 10, "10x20x5",
+				0.5);
 		assertNotNull(productoFisico);
 	}
 
@@ -79,8 +80,8 @@ class TiendaTest {
 	@Test
 	public void queSePuedanIncorporarDistintosProductosALaTienda() {
 		Tienda tienda = new Tienda();
-		ProductoFisico productoFisico = new ProductoFisico(10, "Camiseta", 45.0, "Camiseta de Futbol de River", 10, 0.5,
-				"10x20x5");
+		ProductoFisico productoFisico = new ProductoFisico(10, "Camiseta", 45.0, "Camiseta de Futbol de River", 10, "10x20x5",
+				0.5);
 		ProductoDigital productoDigital = new ProductoDigital(4, "Juego: Pixel Adventure", 14.99,
 				"Explora un mundo pixelado lleno de aventuras", 30, "EXE", 500);
 		ProductoDigital productoDigital1 = new ProductoDigital(10, "Juego: Pixel Adventure", 14.99,
@@ -120,7 +121,7 @@ class TiendaTest {
 	@Test
 	public void queSePuedaAgregarUnProductoAlCarritoDeUnCliente() {
 		// Crear un producto y un cliente
-		Producto producto = new ProductoFisico(10, "Camiseta", 45.0, "Camiseta de Futbol de River", 10, 0.5, "10x20x5");
+		Producto producto = new ProductoFisico(10, "Camiseta", 45.0, "Camiseta de Futbol de River", 10, "10x20x5", 0.5);
 		ProductoPersonalizado libro = new ProductoPersonalizado(9, "Libro personalizado", 40.0,
 				"Libro de cuentos personalizado con el nombre del niño", 8, new ArrayList<>());
 		ProductoPersonalizado poster = new ProductoPersonalizado(12, "Póster personalizado", 22.0,
@@ -171,8 +172,8 @@ class TiendaTest {
 	@Test
 	public void queUnProductoFisicoNoPuedaAgregarCaracteristicas() {
 		Tienda tienda = new Tienda();
-		ProductoFisico productoFisico = new ProductoFisico(4, "Camiseta", 45.0, "Camiseta de Futbol de River", 10, 0.5,
-				"10x20x5");
+		ProductoFisico productoFisico = new ProductoFisico(4, "Camiseta", 45.0, "Camiseta de Futbol de River", 10, "10x20x5",
+				0.5);
 		ProductoDigital productoDigital = new ProductoDigital(9, "Libro: Introducción a la inteligencia artificial",
 				29.99, "Explora los conceptos básicos de la IA", 80, "EPUB", 300);
 		tienda.agregarProducto(productoFisico);
@@ -191,11 +192,11 @@ class TiendaTest {
 	public void obtenerListadoDeProductosFisicosOrdenadosPorDimension() {
 		// Implementar la lógica para ordenar los productos físicos por dimensión
 		ProductoFisico productoFisico = new ProductoFisico(100, "Camiseta", 45.0, "Camiseta de Futbol de River", 10,
-				0.5, "15x20x5");
+				"15x20x5", 0.5);
 		ProductoFisico productoFisico1 = new ProductoFisico(110, "Camiseta", 45.0, "Camiseta de Futbol de River", 10,
-				0.5, "10x25x5");
+				"10x25x5", 0.5);
 		ProductoFisico productoFisico2 = new ProductoFisico(120, "Camiseta", 45.0, "Camiseta de Futbol de River", 10,
-				0.5, "10x20x8");
+				"10x20x8", 0.5);
 		Tienda tienda = new Tienda();
 
 		tienda.agregarProducto(productoFisico);
@@ -254,7 +255,7 @@ class TiendaTest {
 
 		ProductoPersonalizado productoPersonalizado = new ProductoPersonalizado(5, "Almohada personalizada", 25.0,
 				"Almohada de microfibra con foto", 15, new ArrayList<>());
-		ProductoPersonalizado almohada = new ProductoPersonalizado(5, "Almohada personalizada", 25.0,
+		ProductoPersonalizado almohada = new ProductoPersonalizado(25, "Almohada personalizada", 25.0,
 				"Almohada de microfibra con foto", 15, new ArrayList<>());
 		ProductoPersonalizado joya = new ProductoPersonalizado(6, "Joyería personalizada", 50.0,
 				"Collar con nombre grabado", 10, new ArrayList<>());
@@ -269,6 +270,11 @@ class TiendaTest {
 		ProductoPersonalizado caja = new ProductoPersonalizado(11, "Caja de regalo personalizada", 18.0,
 				"Caja de madera con grabado personalizado", 15, new ArrayList<>());
 
+		tienda.agregarProducto(productoPersonalizado);
+		tienda.agregarProducto(almohada);
+		tienda.agregarProducto(poster);
+		tienda.agregarProducto(funda);
+
 		tienda.agregarCaracteristicaAProducto(productoPersonalizado, Caracteristica.LOGO_PERSONAL);
 		tienda.agregarCaracteristicaAProducto(productoPersonalizado, Caracteristica.COLOR_AZUL);
 		tienda.agregarCaracteristicaAProducto(productoPersonalizado, Caracteristica.GRABADO);
@@ -276,11 +282,20 @@ class TiendaTest {
 		tienda.agregarCaracteristicaAProducto(almohada, Caracteristica.LOGO_PERSONAL);
 		tienda.agregarCaracteristicaAProducto(almohada, Caracteristica.COLOR_AZUL);
 
+		tienda.agregarCaracteristicaAProducto(poster, Caracteristica.LOGO_PERSONAL);
+		tienda.agregarCaracteristicaAProducto(poster, Caracteristica.COLOR_AZUL);
+		tienda.agregarCaracteristicaAProducto(poster, Caracteristica.GRABADO);
+		tienda.agregarCaracteristicaAProducto(poster, Caracteristica.DEDICATORIA);
+
 		tienda.agregarCaracteristicaAProducto(funda, Caracteristica.LOGO_PERSONAL);
-		tienda.agregarCaracteristicaAProducto(funda, Caracteristica.COLOR_VERDE);
-		tienda.agregarCaracteristicaAProducto(funda, Caracteristica.GRABADO);
+
+		List<ProductoPersonalizado> lista = new ArrayList<ProductoPersonalizado>(
+				tienda.ordenarProductoPersonalizadoPorCantCaracteristicas());
 		
-		
+		assertEquals(Integer.valueOf(1), lista.get(0).getCantCaracteristicas());
+		assertEquals(Integer.valueOf(3), lista.get(2).getCantCaracteristicas());
+		assertEquals(Integer.valueOf(4), lista.get(3).getCantCaracteristicas());
+		assertEquals(Integer.valueOf(2), lista.get(1).getCantCaracteristicas());
 
 	}
 }

@@ -38,6 +38,17 @@ public class Tienda {
 		else
 			throw new ProductoNoSoportadoException("Este producto no es personalizable");
 	}
+	
+	public Set<ProductoPersonalizado> ordenarProductoPersonalizadoPorCantCaracteristicas() {
+
+		TreeSet<ProductoPersonalizado> ordenados = new TreeSet<ProductoPersonalizado>(
+				new ProductoPersonalizadoOrdenadoPorCantCaract());
+		for (Producto producto : this.productos) {
+			if (producto instanceof ProductoPersonalizado)
+				ordenados.add((ProductoPersonalizado) producto);
+		}
+		return ordenados;
+	}
 
 	public Set<ProductoFisico> ordenarProductoFisicoPorDimension() {
 
