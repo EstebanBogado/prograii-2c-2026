@@ -9,7 +9,6 @@ public abstract class Producto {
 	protected Integer codProducto;
 	private List<Caracteristica> caracteristicas;
 
-
 	public Producto(Integer codProducto) {
 		this.codProducto = codProducto;
 		this.caracteristicas = new ArrayList<Caracteristica>();
@@ -31,13 +30,10 @@ public abstract class Producto {
 			return true;
 		if (obj == null)
 			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
 		Producto other = (Producto) obj;
 		return Objects.equals(codProducto, other.codProducto);
 	}
-	
-	
+
 	public List<Caracteristica> getCaracteristicas() {
 		return this.caracteristicas;
 	}

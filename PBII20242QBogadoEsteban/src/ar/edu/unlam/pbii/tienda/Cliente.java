@@ -20,9 +20,13 @@ public class Cliente {
 		return dni;
 	}
 
-	public Boolean agregarProductoAlCarrito(Producto producto) {
+	public Boolean agregarProductoAlCarrito(Tienda tienda, Integer codProd) {
 
-		return carritoCompras.agregarAlCarrito(producto);
+		Producto producto = tienda.buscarProductoPorCodigo(codProd);
+
+		if (producto == null)
+			return false;
+		return this.carritoCompras.agregarAlCarrito(producto);
 
 	}
 

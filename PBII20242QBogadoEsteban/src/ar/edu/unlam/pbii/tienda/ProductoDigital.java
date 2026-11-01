@@ -1,5 +1,7 @@
 package ar.edu.unlam.pbii.tienda;
 
+import java.util.Objects;
+
 public class ProductoDigital extends Producto {
 
 	private String nombreProducto;
@@ -44,5 +46,4 @@ public class ProductoDigital extends Producto {
 		return tamanio;
 	}
 
-	
 }

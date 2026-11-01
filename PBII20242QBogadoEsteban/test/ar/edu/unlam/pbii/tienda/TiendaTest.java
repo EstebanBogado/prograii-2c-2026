@@ -85,7 +85,7 @@ class TiendaTest {
 				"Explora un mundo pixelado lleno de aventuras", 30, "EXE", 500);
 		ProductoDigital productoDigital1 = new ProductoDigital(10, "Juego: Pixel Adventure", 14.99,
 				"Explora un mundo pixelado lleno de aventuras", 30, "EXE", 500);
-		ProductoPersonalizado productoPeronlizado = new ProductoPersonalizado(5, "Almohada personalizada", 25.0,
+		ProductoPersonalizado productoPersonalizado = new ProductoPersonalizado(5, "Almohada personalizada", 25.0,
 				"Almohada de microfibra con foto", 15, new ArrayList<>());
 		ProductoPersonalizado almohada = new ProductoPersonalizado(5, "Almohada personalizada", 25.0,
 				"Almohada de microfibra con foto", 15, new ArrayList<>());
@@ -105,7 +105,7 @@ class TiendaTest {
 		tienda.agregarProducto(productoFisico);
 		tienda.agregarProducto(productoDigital);
 		tienda.agregarProducto(productoDigital1);
-		tienda.agregarProducto(productoPeronlizado);
+		tienda.agregarProducto(productoPersonalizado);
 		tienda.agregarProducto(almohada);
 		tienda.agregarProducto(joya);
 		tienda.agregarProducto(funda);
@@ -129,11 +129,18 @@ class TiendaTest {
 				"Caja de madera con grabado personalizado", 15, new ArrayList<>());
 		Cliente cliente = new Cliente("Juan", "12345678");
 
+		Tienda tienda = new Tienda();
+
+		tienda.agregarProducto(producto);
+		tienda.agregarProducto(poster);
+		tienda.agregarProducto(caja);
+		tienda.agregarProducto(libro);
+
 		// Agregar el producto al carrito
-		cliente.agregarProductoAlCarrito(producto);
-		cliente.agregarProductoAlCarrito(libro);
-		cliente.agregarProductoAlCarrito(poster);
-		cliente.agregarProductoAlCarrito(caja);
+		cliente.agregarProductoAlCarrito(tienda, 10);
+		cliente.agregarProductoAlCarrito(tienda, 9);
+		cliente.agregarProductoAlCarrito(tienda, 12);
+		cliente.agregarProductoAlCarrito(tienda, 11);
 
 		// Verificar que el carrito tenga un producto
 		assertEquals(4, cliente.getCarrito().getProductos().size());
@@ -205,7 +212,7 @@ class TiendaTest {
 
 	@Test
 	public void obtenerListadoDeProductosDigitalesOrdenadosPorFormato() {
-		// Implementar la lógica para ordenar los productos digitales por formato
+//		 Implementar la lógica para ordenar los productos digitales por formato
 		ProductoDigital productoDigital = new ProductoDigital(4, "Juego: Pixel Adventure", 14.99,
 				"Explora un mundo pixelado lleno de aventuras", 30, "EXE", 500);
 		ProductoDigital productoDigital1 = new ProductoDigital(10, "Juego: Pixel Adventure", 14.99,
@@ -216,13 +223,64 @@ class TiendaTest {
 				"Aprende a programar desde cero", 100, "MP4", 2000);
 		ProductoDigital productoDigital4 = new ProductoDigital(3, "Álbum: Música para relajarse", 7.99,
 				"10 canciones instrumentales", 50, "MP3", 150);
-		ProductoDigital productoDigital5 = new ProductoDigital(4, "Juego: Pixel Adventure", 14.99,
+		ProductoDigital productoDigital5 = new ProductoDigital(14, "Juego: Pixel Adventure", 14.99,
 				"Explora un mundo pixelado lleno de aventuras", 30, "EXE", 500);
+		Tienda tienda = new Tienda();
 
+		tienda.agregarProducto(productoDigital);
+		tienda.agregarProducto(productoDigital1);
+		tienda.agregarProducto(productoDigital2);
+		tienda.agregarProducto(productoDigital3);
+		tienda.agregarProducto(productoDigital4);
+		tienda.agregarProducto(productoDigital5);
+
+		List<ProductoDigital> ordenadosPorFormato = new ArrayList<ProductoDigital>();
+		ordenadosPorFormato.addAll(tienda.ordenarProductoDigitalPorFormato());
+
+		assertEquals("EXE", ordenadosPorFormato.get(0).getFormato());
+		assertEquals("EXE", ordenadosPorFormato.get(1).getFormato());
+		assertEquals("EXE", ordenadosPorFormato.get(2).getFormato());
+		assertEquals("MP3", ordenadosPorFormato.get(3).getFormato());
+		assertEquals("MP4", ordenadosPorFormato.get(4).getFormato());
+		assertEquals("PDF", ordenadosPorFormato.get(5).getFormato());
 	}
 
-//    @Test
-//    public void obtenerListadoDeProductosPersonalizadosCantidadDeCaracteristicas() {
-//        // Implementar la lógica para obtener la cantidad de características de cada producto personalizado
-//    }
+	@Test
+	public void obtenerListadoDeProductosPersonalizadosCantidadDeCaracteristicas()
+			throws ProductoNoEncontradoException, ProductoNoSoportadoException {
+		// Implementar la lógica para obtener la cantidad de características de cada
+		// producto personalizado
+		Tienda tienda = new Tienda();
+
+		ProductoPersonalizado productoPersonalizado = new ProductoPersonalizado(5, "Almohada personalizada", 25.0,
+				"Almohada de microfibra con foto", 15, new ArrayList<>());
+		ProductoPersonalizado almohada = new ProductoPersonalizado(5, "Almohada personalizada", 25.0,
+				"Almohada de microfibra con foto", 15, new ArrayList<>());
+		ProductoPersonalizado joya = new ProductoPersonalizado(6, "Joyería personalizada", 50.0,
+				"Collar con nombre grabado", 10, new ArrayList<>());
+		ProductoPersonalizado funda = new ProductoPersonalizado(7, "Funda de teléfono personalizada", 12.0,
+				"Funda de silicona con diseño personalizado", 50, new ArrayList<>());
+		ProductoPersonalizado puzzle = new ProductoPersonalizado(8, "Puzzle personalizado", 30.0,
+				"Puzzle de 1000 piezas con foto personalizada", 15, new ArrayList<>());
+		ProductoPersonalizado libro = new ProductoPersonalizado(9, "Libro personalizado", 40.0,
+				"Libro de cuentos personalizado con el nombre del niño", 8, new ArrayList<>());
+		ProductoPersonalizado poster = new ProductoPersonalizado(10, "Póster personalizado", 22.0,
+				"Póster enmarcado con diseño personalizado", 20, new ArrayList<>());
+		ProductoPersonalizado caja = new ProductoPersonalizado(11, "Caja de regalo personalizada", 18.0,
+				"Caja de madera con grabado personalizado", 15, new ArrayList<>());
+
+		tienda.agregarCaracteristicaAProducto(productoPersonalizado, Caracteristica.LOGO_PERSONAL);
+		tienda.agregarCaracteristicaAProducto(productoPersonalizado, Caracteristica.COLOR_AZUL);
+		tienda.agregarCaracteristicaAProducto(productoPersonalizado, Caracteristica.GRABADO);
+
+		tienda.agregarCaracteristicaAProducto(almohada, Caracteristica.LOGO_PERSONAL);
+		tienda.agregarCaracteristicaAProducto(almohada, Caracteristica.COLOR_AZUL);
+
+		tienda.agregarCaracteristicaAProducto(funda, Caracteristica.LOGO_PERSONAL);
+		tienda.agregarCaracteristicaAProducto(funda, Caracteristica.COLOR_VERDE);
+		tienda.agregarCaracteristicaAProducto(funda, Caracteristica.GRABADO);
+		
+		
+
+	}
 }
