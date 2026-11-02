@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 class TiendaTest {
 
 	@Test
@@ -80,8 +79,8 @@ class TiendaTest {
 	@Test
 	public void queSePuedanIncorporarDistintosProductosALaTienda() {
 		Tienda tienda = new Tienda();
-		ProductoFisico productoFisico = new ProductoFisico(10, "Camiseta", 45.0, "Camiseta de Futbol de River", 10, "10x20x5",
-				0.5);
+		ProductoFisico productoFisico = new ProductoFisico(10, "Camiseta", 45.0, "Camiseta de Futbol de River", 10,
+				"10x20x5", 0.5);
 		ProductoDigital productoDigital = new ProductoDigital(4, "Juego: Pixel Adventure", 14.99,
 				"Explora un mundo pixelado lleno de aventuras", 30, "EXE", 500);
 		ProductoDigital productoDigital1 = new ProductoDigital(10, "Juego: Pixel Adventure", 14.99,
@@ -172,8 +171,8 @@ class TiendaTest {
 	@Test
 	public void queUnProductoFisicoNoPuedaAgregarCaracteristicas() {
 		Tienda tienda = new Tienda();
-		ProductoFisico productoFisico = new ProductoFisico(4, "Camiseta", 45.0, "Camiseta de Futbol de River", 10, "10x20x5",
-				0.5);
+		ProductoFisico productoFisico = new ProductoFisico(4, "Camiseta", 45.0, "Camiseta de Futbol de River", 10,
+				"10x20x5", 0.5);
 		ProductoDigital productoDigital = new ProductoDigital(9, "Libro: Introducción a la inteligencia artificial",
 				29.99, "Explora los conceptos básicos de la IA", 80, "EPUB", 300);
 		tienda.agregarProducto(productoFisico);
@@ -291,7 +290,7 @@ class TiendaTest {
 
 		List<ProductoPersonalizado> lista = new ArrayList<ProductoPersonalizado>(
 				tienda.ordenarProductoPersonalizadoPorCantCaracteristicas());
-		
+
 		assertEquals(Integer.valueOf(1), lista.get(0).getCantCaracteristicas());
 		assertEquals(Integer.valueOf(3), lista.get(2).getCantCaracteristicas());
 		assertEquals(Integer.valueOf(4), lista.get(3).getCantCaracteristicas());

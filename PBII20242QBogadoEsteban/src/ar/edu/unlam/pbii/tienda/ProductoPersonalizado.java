@@ -8,7 +8,7 @@ public class ProductoPersonalizado extends Producto {
 	private List<Caracteristica> caracteristicas;
 
 	public ProductoPersonalizado(Integer codProducto, String nombreProducto, Double precio, String descripicionProducto,
-			Integer existencias, ArrayList caracteristicas) {
+			Integer existencias, ArrayList<Caracteristica> caracteristicas) {
 		super(codProducto, nombreProducto, precio, descripicionProducto, existencias);
 		this.caracteristicas = new ArrayList<Caracteristica>();
 	}
