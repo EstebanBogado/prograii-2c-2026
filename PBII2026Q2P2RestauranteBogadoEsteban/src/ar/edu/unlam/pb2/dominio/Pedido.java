@@ -3,8 +3,6 @@ package ar.edu.unlam.pb2.dominio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import ar.edu.unlam.pb2.Restaurante;
 import ar.edu.unlam.pb2.excepciones.ClienteInexistenteException;
 
 public class Pedido {
@@ -70,12 +68,9 @@ public class Pedido {
 
 	public Double calcularTotal() {
 		Double total = 0.0;
-
 		for (Producto producto : productos) {
 			total += producto.getPrecioFinal();
 		}
-
 		return total;
 	}
-
 }

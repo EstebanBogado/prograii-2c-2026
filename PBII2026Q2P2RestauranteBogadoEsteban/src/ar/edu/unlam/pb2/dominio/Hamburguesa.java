@@ -35,5 +35,4 @@ public class Hamburguesa extends Producto implements IPersonalizable {
 	public Set<IngredienteExtra> getIngredientesExtras() {
 		return this.extras;
 	}
-
 }

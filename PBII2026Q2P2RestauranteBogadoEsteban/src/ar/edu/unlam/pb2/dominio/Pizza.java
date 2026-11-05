@@ -1,6 +1,5 @@
 package ar.edu.unlam.pb2.dominio;
 
-import java.util.Comparator;
 import java.util.Set;
 
 public class Pizza extends Producto implements IPersonalizable {
@@ -32,5 +31,4 @@ public class Pizza extends Producto implements IPersonalizable {
 	public Set<IngredienteExtra> getIngredientesExtras() {
 		return this.extras;
 	}
-
 }

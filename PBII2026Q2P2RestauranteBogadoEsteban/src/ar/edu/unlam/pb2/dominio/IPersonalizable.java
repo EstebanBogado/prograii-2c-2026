@@ -6,5 +6,4 @@ public interface IPersonalizable {
 	public void agregarIngrediente(IngredienteExtra extra);
 
 	public Set<IngredienteExtra> getIngredientesExtras();
-
 }

@@ -36,8 +36,6 @@ public abstract class Producto {
 			return true;
 		if (obj == null)
 			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
 		Producto other = (Producto) obj;
 		return Objects.equals(codigoProducto, other.codigoProducto);
 	}
@@ -51,5 +49,4 @@ public abstract class Producto {
 	}
 
 	public abstract Double getPrecioFinal();
-
 }
