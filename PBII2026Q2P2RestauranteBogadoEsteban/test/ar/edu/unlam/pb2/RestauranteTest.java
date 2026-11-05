@@ -12,7 +12,6 @@ import ar.edu.unlam.pb2.dominio.Bebida;
 import ar.edu.unlam.pb2.dominio.Cliente;
 import ar.edu.unlam.pb2.dominio.Hamburguesa;
 import ar.edu.unlam.pb2.dominio.IPersonalizable;
-//import ar.edu.unlam.pb2.dominio.IPersonalizable;
 import ar.edu.unlam.pb2.dominio.IngredienteExtra;
 import ar.edu.unlam.pb2.dominio.Pedido;
 import ar.edu.unlam.pb2.dominio.Pizza;
