@@ -1,6 +1,9 @@
 package ar.edu.unlam.pb2.dominio;
 
-public class Pizza extends Producto {
+import java.util.Comparator;
+import java.util.Set;
+
+public class Pizza extends Producto implements IPersonalizable {
 
 	private String tipoMasa;
 
@@ -18,6 +21,16 @@ public class Pizza extends Producto {
 		if ((this.extras != null))
 			return this.precioBase + (this.extras.size() * 800.0);
 		return this.precioBase;
+	}
+
+	@Override
+	public void agregarIngrediente(IngredienteExtra extra) {
+		this.extras.add(extra);
+	}
+
+	@Override
+	public Set<IngredienteExtra> getIngredientesExtras() {
+		return this.extras;
 	}
 
 }

@@ -3,7 +3,6 @@ package ar.edu.unlam.pb2.dominio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import ar.edu.unlam.pb2.Restaurante;
 import ar.edu.unlam.pb2.excepciones.ClienteInexistenteException;
@@ -34,8 +33,6 @@ public class Pedido {
 		this.productos.add(producto);
 
 	}
-	
-	
 
 	public List<Producto> getProducto() {
 		return this.productos;
@@ -62,13 +59,22 @@ public class Pedido {
 		return this.productos;
 	}
 
+	public Double precioUnitarioProducto(Integer codigo) {
+		Double precio = 0.0;
+		for (Producto producto : productos) {
+			if (codigo.equals(producto.getCodigoProducto()))
+				precio = producto.getPrecioFinal();
+		}
+		return precio;
+	}
+
 	public Double calcularTotal() {
 		Double total = 0.0;
-		
+
 		for (Producto producto : productos) {
 			total += producto.getPrecioFinal();
 		}
-		
+
 		return total;
 	}
 

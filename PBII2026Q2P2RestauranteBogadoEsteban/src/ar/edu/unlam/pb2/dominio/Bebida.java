@@ -1,5 +1,6 @@
 package ar.edu.unlam.pb2.dominio;
 
+
 public class Bebida extends Producto {
 
 	private Boolean tieneAlcohol;
@@ -21,5 +22,7 @@ public class Bebida extends Producto {
 
 		return this.getPrecioBase();
 	}
+
+	
 
 }

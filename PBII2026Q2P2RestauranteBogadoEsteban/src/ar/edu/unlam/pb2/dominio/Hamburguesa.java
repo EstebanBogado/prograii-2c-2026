@@ -2,7 +2,7 @@ package ar.edu.unlam.pb2.dominio;
 
 import java.util.Set;
 
-public class Hamburguesa extends Producto {
+public class Hamburguesa extends Producto implements IPersonalizable {
 
 	private Integer cantidadMedallones;
 
@@ -26,6 +26,14 @@ public class Hamburguesa extends Producto {
 		return this.precioBase;
 	}
 
-	
+	@Override
+	public void agregarIngrediente(IngredienteExtra extra) {
+		this.extras.add(extra);
+	}
+
+	@Override
+	public Set<IngredienteExtra> getIngredientesExtras() {
+		return this.extras;
+	}
 
 }

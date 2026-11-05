@@ -21,10 +21,6 @@ public abstract class Producto {
 		return codigoProducto;
 	}
 
-	public void agregarIngrediente(IngredienteExtra extra) {
-		this.extras.add(extra);
-	}
-
 	public Set<IngredienteExtra> getExtras() {
 		return this.extras;
 	}
@@ -54,9 +50,6 @@ public abstract class Producto {
 		return precioBase;
 	}
 
-	public Set<IngredienteExtra> getIngredientesExtras() {
-		return this.extras;
-	}
-
 	public abstract Double getPrecioFinal();
+
 }

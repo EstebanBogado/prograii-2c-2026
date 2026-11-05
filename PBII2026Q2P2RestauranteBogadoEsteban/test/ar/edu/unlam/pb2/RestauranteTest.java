@@ -6,9 +6,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import ar.edu.unlam.pb2.dominio.Bebida;
 import ar.edu.unlam.pb2.dominio.Cliente;
 import ar.edu.unlam.pb2.dominio.Hamburguesa;
+import ar.edu.unlam.pb2.dominio.IPersonalizable;
 //import ar.edu.unlam.pb2.dominio.IPersonalizable;
 import ar.edu.unlam.pb2.dominio.IngredienteExtra;
 import ar.edu.unlam.pb2.dominio.Pedido;
@@ -81,16 +84,16 @@ public class RestauranteTest {
 		assertEquals(2, pedido.getProductos().size());
 	}
 
-//	@Test
-//	public void queAlCrearUnPedidoParaUnClienteNoRegistradoSeLanceClienteInexistenteException()
-//			throws ClienteInexistenteException {
-//		Cliente clienteNoRegistrado = new Cliente("99999999", "Cliente Fantasma");
-//		Pedido pedido = new Pedido(1002, clienteNoRegistrado);
-//
-//		assertThrows(ClienteInexistenteException.class, () -> {
-//			restaurante.agregarPedido(pedido);
-//		});
-//	}
+	@Test
+	public void queAlCrearUnPedidoParaUnClienteNoRegistradoSeLanceClienteInexistenteException()
+			throws ClienteInexistenteException {
+		Cliente clienteNoRegistrado = new Cliente("99999999", "Cliente Fantasma");
+		Pedido pedido = new Pedido(1002, clienteNoRegistrado);
+
+		assertThrows(ClienteInexistenteException.class, () -> {
+			restaurante.agregarPedido(pedido);
+		});
+	}
 
 	@Test
 	public void queSePuedaCalcularElTotalDeUnPedido() throws ClienteInexistenteException {
@@ -113,37 +116,82 @@ public class RestauranteTest {
 		assertEquals(14200.0, pedido.calcularTotal(), 0.01);
 	}
 
-//	@Test
-//	public void queSePuedanAgregarIngredientesExtrasAProductosPersonalizables() {
-//		Hamburguesa burger = new Hamburguesa(1, "Mega Burger", 5000.0, 3);
-//		Pizza pizza = new Pizza(2, "Especial", 6500.0, "Al molde");
-//		Producto bebida = new Bebida(3, "Gaseosa", 1200.0, false);
-//
-//		restaurante.agregarIngredienteAProducto(burger, IngredienteExtra.CHEDDAR);
-//		restaurante.agregarIngredienteAProducto(burger, IngredienteExtra.PANCETA);
-//		restaurante.agregarIngredienteAProducto(pizza, IngredienteExtra.DOBLE_QUESO);
-//
-//		assertEquals(2, burger.getIngredientesExtras().size());
-//		assertEquals(1, pizza.getIngredientesExtras().size());
-//
-//		assertThrows(ClassCastException.class, () -> {
-//			restaurante.agregarIngredienteAProducto((IPersonalizable) bebida, IngredienteExtra.CHEDDAR);
-//		});
+	@Test
+	public void queSePuedanAgregarIngredientesExtrasAProductosPersonalizables() throws ProductoDuplicadoException {
+		Hamburguesa burger = new Hamburguesa(1, "Mega Burger", 5000.0, 3);
+		Pizza pizza = new Pizza(2, "Especial", 6500.0, "Al molde");
+		Producto bebida = new Bebida(3, "Gaseosa", 1200.0, false);
+
+		restaurante.agregarProducto(pizza);
+		restaurante.agregarProducto(burger);
+		restaurante.agregarProducto(bebida);
+
+		restaurante.agregarIngredienteAProducto(burger, IngredienteExtra.CHEDDAR);
+		restaurante.agregarIngredienteAProducto(burger, IngredienteExtra.PANCETA);
+		restaurante.agregarIngredienteAProducto(pizza, IngredienteExtra.DOBLE_QUESO);
+
+		assertEquals(2, burger.getIngredientesExtras().size());
+		assertEquals(1, pizza.getIngredientesExtras().size());
+
+		assertThrows(ClassCastException.class, () -> {
+			restaurante.agregarIngredienteAProducto((IPersonalizable) bebida, IngredienteExtra.CHEDDAR);
+		});
 	}
-//
-//    @Test
-//    public void obtenerListadoDePizzasOrdenadasPorNombre() throws ProductoDuplicadoException {
-//        //TODO
-//        restaurante.ordenarPizzasPorNombre();
-//        assertTrue(false);
-//    }
-//
-//    @Test
-//    public void obtenerListadoDePedidosOrdenadosPorMayorPrecio() throws ClienteInexistenteException {
-//
-//         //TODO
-//         restaurante.ordenarPedidosPorMayorPrecio();
-//         assertTrue(false);
-//
-//    }
+
+	@Test
+	public void obtenerListadoDePizzasOrdenadasPorNombre() throws ProductoDuplicadoException {
+		// TODO
+
+		Pizza pizza = new Pizza(20, "Especial", 6500.0, "Integral");
+		Pizza muzzarella = new Pizza(21, "Muzza", 7500.0, "A la piedra");
+		Pizza calabresa = new Pizza(22, "Calabresa", 5500.0, "Al molde");
+		Pizza napolitana = new Pizza(23, "Napo", 9500.0, "Al molde");
+		restaurante.agregarProducto(muzzarella);
+		restaurante.agregarProducto(pizza);
+		restaurante.agregarProducto(calabresa);
+		restaurante.agregarProducto(napolitana);
+
+		List<Pizza> pizzasOrdenadasPorNombre = restaurante.ordenarPizzasPorNombre();
+
+		assertEquals(Integer.valueOf(4), pizzasOrdenadasPorNombre.size());
+		assertEquals("Calabresa", pizzasOrdenadasPorNombre.get(0).getNombreProducto());
+		assertEquals("Especial", pizzasOrdenadasPorNombre.get(1).getNombreProducto());
+		assertEquals("Muzza", pizzasOrdenadasPorNombre.get(2).getNombreProducto());
+		assertEquals("Napo", pizzasOrdenadasPorNombre.get(3).getNombreProducto());
+	}
+
+	@Test
+	public void obtenerListadoDePedidosOrdenadosPorMayorPrecio() throws ClienteInexistenteException {
+		restaurante.registrarCliente(cliente);
+		Pedido pedido = new Pedido(1001, cliente);
+		Pedido pedido1 = new Pedido(1002, cliente);
+		Pedido pedido2 = new Pedido(1003, cliente);
+
+		pedido.agregarProducto(new Pizza(20, "Especial", 6500.0, "Integral"));
+		pedido.agregarProducto(new Pizza(22, "Calabresa", 5500.0, "Al molde"));
+		pedido.agregarProducto(new Hamburguesa(1, "Doble Cuarto", 4000.0, 2));
+		pedido1.agregarProducto(new Pizza(21, "Muzza", 7500.0, "A la piedra"));
+		pedido1.agregarProducto(new Pizza(23, "Napo", 9500.0, "Al molde"));
+		pedido1.agregarProducto(new Bebida(2, "Gaseosa", 1200.0, false));
+
+		pedido2.agregarProducto(new Pizza(20, "Especial", 6500.0, "Integral"));
+		pedido2.agregarProducto(new Pizza(22, "Calabresa", 5500.0, "Al molde"));
+		pedido2.agregarProducto(new Hamburguesa(1, "Doble Cuarto", 4000.0, 2));
+		pedido2.agregarProducto(new Pizza(21, "Muzza", 7500.0, "A la piedra"));
+		pedido2.agregarProducto(new Pizza(23, "Napo", 9500.0, "Al molde"));
+		pedido2.agregarProducto(new Bebida(2, "Gaseosa", 1200.0, false));
+
+		restaurante.agregarPedido(pedido);
+		restaurante.agregarPedido(pedido1);
+		restaurante.agregarPedido(pedido2);
+
+		List<Pedido> pedidosOrdenadosPorPrecioMayorAMenor = restaurante.ordenarPedidosPorMayorPrecio();
+
+		assertEquals(Integer.valueOf(3), pedidosOrdenadosPorPrecioMayorAMenor.size());
+
+		assertEquals(Double.valueOf(34200.0), pedidosOrdenadosPorPrecioMayorAMenor.get(0).calcularTotal());
+		assertEquals(Double.valueOf(16000.0), pedidosOrdenadosPorPrecioMayorAMenor.get(2).calcularTotal());
+		assertEquals(Double.valueOf(18200.0), pedidosOrdenadosPorPrecioMayorAMenor.get(1).calcularTotal());
+
+	}
 }
