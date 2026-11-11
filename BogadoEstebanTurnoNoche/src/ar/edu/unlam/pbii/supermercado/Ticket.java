@@ -17,7 +17,7 @@ public abstract class Ticket {
 		return nroTicket;
 	}
 
-	public Boolean agregarProducto(Producto producto) throws ProductoSinStockException, ProductoInexistenteException {
+	public Boolean agregarProducto(Producto producto) {
 		if (producto != null && producto.getExistencias() > 0) {
 			productos.add(producto);
 			producto.quitarDeStock();
