@@ -1,0 +1,118 @@
+Parcial — Congreso de Tecnología
+PB2 / PA · Martes 10/11/2026 · Duración máxima: 2 horas
+Apellido y nombre: ______________________________ Legajo: ____________ Comisión: ________
+Una universidad organiza un congreso de tecnología con distintas actividades: charlas, talleres y laboratorios.
+Los asistentes se inscriben en las actividades que les interesan. Los organizadores necesitan controlar los cupos,
+calcular cuánto debe abonar cada asistente y cuánto se recauda, y obtener listados de inscriptos con distintos
+órdenes.
+Condiciones de resolución
+• Lenguaje: Java con JUnit 5.
+• Resolver con TDD en baby steps: un test por vez, implementación mínima, refactor después.
+• Escribir cada test en formato Given-When-Then (como comentarios) y con un nombre que permita saber
+qué se prueba sin leer el cuerpo.
+• Prohibido usar instanceof, getClass() e if/switch sobre el tipo de un objeto para decidir
+comportamiento (dentro de equals no se considera una violación).
+• Antes de cada extends o implements, dejar un comentario de una línea con la evidencia que justifica esa
+decisión.
+• Para cada relación de "muchos", elegir la implementación de colección que corresponda y justificarlo con
+un comentario de una línea.
+• Para cada situación de error, elegir el tipo de excepción que corresponda y justificarlo con un comentario
+de una línea.
+• Recomendación: priorizar tener una solución completa y funcionando por encima de pulir un único
+punto. Los requerimientos más simples están primero.
+Requerimientos
+Asistentes
+• De cada asistente se conoce su DNI, su apellido y su nombre.
+• Cada persona se identifica por su DNI: dos asistentes con el mismo DNI son la misma persona, aunque
+los demás datos difieran.
+• Todo asistente tiene una acreditación, que puede cambiar durante el congreso (por ejemplo, quien se
+acreditó como público general y luego presenta su certificado de alumno regular pasa a estudiante).
+Acreditaciones
+A partir del arancel de una actividad, cada acreditación determina cuánto abona el asistente:
+• General: abona el arancel completo.
+• Estudiante: abona el 50% del arancel.
+• Auspiciante: no abona.
+Pueden aparecer acreditaciones nuevas a futuro sin modificar el código ya escrito.
+Actividades
+Se ofrecen charlas, talleres y laboratorios, pero pueden aparecer nuevos tipos de actividad a futuro sin modificar
+el código ya escrito.
+De cada actividad se conoce su nombre y su cupo (la cantidad máxima de inscriptos, siempre mayor que cero).
+Toda actividad sabe cuál es su arancel.
+• Charla: es gratuita.
+
+• Taller: tiene un arancel base que se fija al crearlo. Hay talleres introductorios, intensivos, etc., con
+distintos aranceles base, pero todos se calculan igual.
+• Laboratorio: es un taller que además requiere equipamiento, por lo que suma un cargo fijo de $2.500 al
+arancel que tendría como taller.
+Inscripciones
+• Un asistente puede inscribirse en una actividad mientras haya cupo.
+• Un asistente no puede inscribirse dos veces en la misma actividad. Si ya está inscripto, se informa eso,
+aunque el cupo esté completo.
+• No se puede inscribir a nadie cuando el cupo está completo.
+• Cuando una inscripción no se realiza, la actividad debe quedar exactamente como estaba.
+• Los datos inválidos al crear los objetos (por ejemplo, un DNI vacío, un cupo no positivo o un arancel
+negativo) también deben rechazarse.
+• Una actividad puede informar cuánto abona un asistente por ella, y cuánto recauda en total (la suma de lo
+que abona cada inscripto).
+• Si cambia la acreditación de un asistente ya inscripto, el cambio debe reflejarse en lo que abona, sin que
+el asistente se duplique ni deje de estar inscripto.
+Listados de inscriptos
+Una actividad puede entregar el listado de sus inscriptos ordenado según un criterio que decide quien lo
+consulta. Se necesitan, como mínimo, estos dos criterios:
+• Alfabético: por apellido y, a igual apellido, por nombre, sin distinguir mayúsculas de minúsculas.
+• Por monto que abona por esa actividad, de mayor a menor; a igual monto, alfabético.
+• Ningún criterio puede hacer que se pierda un asistente del listado, aunque coincida con otro en el valor
+que se compara.
+• Quien recibe un listado puede modificarlo libremente sin afectar a la actividad.
+Congreso
+• Registra sus actividades, en el orden en que se agregan.
+• Calcula la recaudación total, sumando la recaudación de todas sus actividades.
+• Informa cuántos asistentes distintos tiene: una persona inscripta en varias actividades cuenta una sola vez.
+Ejemplos
+Ejemplo 1. Actividades: Charla "Seguridad en la nube" (cupo 3); Taller "Git desde cero" (cupo 2, arancel base
+$6.000); Laboratorio "Hardening de servidores" (cupo 2, arancel base $8.000). Asistentes: Ana (General), Beto
+(Estudiante) y Carla (Auspiciante).
+Inscripciones: Ana, Beto y Carla en la charla; Ana y Beto en el taller; Ana y Beto en el laboratorio. Luego se
+intenta inscribir a Carla en el laboratorio y no se realiza, porque el cupo está completo.
+Charla: arancel $0 recauda $0
+Taller: Ana $6.000 + Beto $3.000 recauda $9.000
+Laboratorio: arancel $8.000 + $2.500 = $10.500
+Ana $10.500 + Beto $5.250 recauda $15.750
+Recaudación total: $24.750
+Asistentes distintos: 3 (aunque hay 7 inscripciones)
+Ejemplo 2. Taller "Git desde cero" (cupo 10, arancel base $6.000) con estos inscriptos, todos con DNI distinto:
+Perez Juan (Estudiante) Perez Ana (Estudiante)
+diaz Marta (General) Acosta Luis (General)
+
+Gomez Rita (Auspiciante)
+Alfabético: Acosta Luis | diaz Marta | Gomez Rita |
+Perez Ana | Perez Juan
+Por monto: Acosta Luis $6.000 | diaz Marta $6.000 |
+Perez Ana $3.000 | Perez Juan $3.000 | Gomez Rita $0
+(El apellido "diaz" está en minúscula a propósito. En los datos de prueba evitar tildes y eñes.)
+Tests mínimos esperados
+Además de los que hagan falta para ir guiando el diseño, se espera como mínimo:
+• El arancel de cada tipo de actividad, incluidos dos talleres con distinto arancel base.
+• La identidad de los asistentes: mismo DNI es la misma persona, aunque difieran los demás datos; distinto
+DNI son personas distintas.
+• El monto que abona un asistente con cada una de las tres acreditaciones.
+• Inscripción exitosa, inscripción repetida (incluso con otra instancia de la misma persona) e inscripción
+con el cupo completo, verificando que el rechazo no altera la actividad.
+• Un asistente ya inscripto cuando el cupo está completo.
+• Un asistente inscripto que cambia de acreditación: cambia lo que abona, no se duplica y no deja de estar
+inscripto.
+• Los datos inválidos al crear los objetos.
+• La recaudación de una actividad.
+• Los dos listados del Ejemplo 2, verificando que no se pierde ningún asistente y que modificar el listado
+no altera la actividad.
+• Un congreso con actividades de distintos tipos (Ejemplo 1), sin ningún instanceof/getClass: recaudación
+total y asistentes distintos.
+• Que agregar un tipo nuevo de actividad o de acreditación no requiera modificar ningún método ya escrito.
+Qué se evalúa
+• Que la jerarquía de clases y las interfaces surjan de evidencia en el código y estén bien justificadas.
+• Que cada relación esté bien elegida: herencia, composición o simple parametrización.
+• Que el polimorfismo reemplace por completo a las preguntas por el tipo.
+• Que cada colección elegida responda a lo que el requerimiento necesita y esté justificada.
+• Que cada excepción elegida responda a la naturaleza del error y esté justificada.
+• La calidad de los tests y la evidencia de haber trabajado con TDD.
+• Que el sistema calcule correctamente los ejemplos dados.
