@@ -20,6 +20,7 @@ un comentario de una línea.
 de una línea.
 • Recomendación: priorizar tener una solución completa y funcionando por encima de pulir un único
 punto. Los requerimientos más simples están primero.
+
 Requerimientos
 Asistentes
 • De cada asistente se conoce su DNI, su apellido y su nombre.
@@ -39,7 +40,6 @@ el código ya escrito.
 De cada actividad se conoce su nombre y su cupo (la cantidad máxima de inscriptos, siempre mayor que cero).
 Toda actividad sabe cuál es su arancel.
 • Charla: es gratuita.
-
 • Taller: tiene un arancel base que se fija al crearlo. Hay talleres introductorios, intensivos, etc., con
 distintos aranceles base, pero todos se calculan igual.
 • Laboratorio: es un taller que además requiere equipamiento, por lo que suma un cargo fijo de $2.500 al
@@ -68,6 +68,7 @@ Congreso
 • Registra sus actividades, en el orden en que se agregan.
 • Calcula la recaudación total, sumando la recaudación de todas sus actividades.
 • Informa cuántos asistentes distintos tiene: una persona inscripta en varias actividades cuenta una sola vez.
+
 Ejemplos
 Ejemplo 1. Actividades: Charla "Seguridad en la nube" (cupo 3); Taller "Git desde cero" (cupo 2, arancel base
 $6.000); Laboratorio "Hardening de servidores" (cupo 2, arancel base $8.000). Asistentes: Ana (General), Beto
@@ -90,6 +91,7 @@ Perez Ana | Perez Juan
 Por monto: Acosta Luis $6.000 | diaz Marta $6.000 |
 Perez Ana $3.000 | Perez Juan $3.000 | Gomez Rita $0
 (El apellido "diaz" está en minúscula a propósito. En los datos de prueba evitar tildes y eñes.)
+
 Tests mínimos esperados
 Además de los que hagan falta para ir guiando el diseño, se espera como mínimo:
 • El arancel de cada tipo de actividad, incluidos dos talleres con distinto arancel base.
@@ -108,6 +110,7 @@ no altera la actividad.
 • Un congreso con actividades de distintos tipos (Ejemplo 1), sin ningún instanceof/getClass: recaudación
 total y asistentes distintos.
 • Que agregar un tipo nuevo de actividad o de acreditación no requiera modificar ningún método ya escrito.
+
 Qué se evalúa
 • Que la jerarquía de clases y las interfaces surjan de evidencia en el código y estén bien justificadas.
 • Que cada relación esté bien elegida: herencia, composición o simple parametrización.
