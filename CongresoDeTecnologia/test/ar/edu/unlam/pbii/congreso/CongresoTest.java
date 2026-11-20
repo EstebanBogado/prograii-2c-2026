@@ -35,8 +35,8 @@ class CongresoTest {
 		asistente2.setAcreditacion(Acreditacion.AUSPICIANTE);
 		congresoTecnologico.registrarAsistente(asistente1);
 		congresoTecnologico.registrarAsistente(asistente2);
-		
-assertEquals(Integer.valueOf(1), congresoTecnologico.getCantAsist());
+
+		assertEquals(Integer.valueOf(1), congresoTecnologico.getCantAsist());
 	}
 
 }
