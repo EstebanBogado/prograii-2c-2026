@@ -32,23 +32,6 @@ public class Congreso {
 
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(asistentes);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-		Congreso other = (Congreso) obj;
-		return Objects.equals(asistentes, other.asistentes);
-	}
-
 	public Integer getCantAsist() {
 		// TODO Auto-generated method stub
 		return this.asistentes.size();
